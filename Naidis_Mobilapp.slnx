@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Naidis_Mobilapp/Naidis_Mobilapp.csproj">
+    <Deploy />
+  </Project>
+</Solution>
