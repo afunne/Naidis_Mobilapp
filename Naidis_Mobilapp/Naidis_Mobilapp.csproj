@@ -40,7 +40,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\nya.png" BaseSixze="128,128"/>
+		<MauiIcon Include="Resources\AppIcon\nya.png" BaseSixze="128,128" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -63,7 +63,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Timer_Page.xaml.cs">
+	    <DependentUpon>Timer_Page.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="FigurePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Timer_Page.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="StartPage.xaml">

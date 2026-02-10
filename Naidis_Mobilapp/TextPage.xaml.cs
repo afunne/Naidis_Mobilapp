@@ -10,7 +10,7 @@ public partial class TextPage : ContentPage
 	HorizontalStackLayout hsl;
     VerticalStackLayout vsl;
     List<string> nupud = new List<string>() { "tagasi", "Avaleht", "Edasi" };
-	public TextPage(int i)
+	public TextPage() // int i
 	{
 		//InitializeComponent();
 		lbl = new Label
@@ -50,7 +50,7 @@ public partial class TextPage : ContentPage
 			};
 			hsl.Add(nupp);
 			nupp.Clicked += Liikumine;
-		};
+		}
 
 		vsl = new VerticalStackLayout
 		{
