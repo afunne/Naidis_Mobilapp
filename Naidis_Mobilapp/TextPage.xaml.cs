@@ -59,6 +59,7 @@ public partial class TextPage : ContentPage
 			Children = { lbl, editor, hsl},
 			HorizontalOptions = LayoutOptions.Center
 		};
+		Content = vsl;
 	}
 
     private void Liikumine(object? sender, EventArgs e)
