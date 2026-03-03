@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.StepperSliderPage"
+             Title="RGB mudel">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+
+            <!-- Värvi eelvaade -->
+            <Border x:Name="ColorBox"
+                    Background="Black"
+                    HorizontalOptions="Fill"
+                    HeightRequest="130"
+                    Margin="0,5,0,0">
+                <Border.StrokeShape>
+                    <RoundRectangle x:Name="colorBoxShape" CornerRadius="16"/>
+                </Border.StrokeShape>
+                <Label x:Name="lblHex"
+                       Text="#000000"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="White"
+                       FontSize="26"
+                       FontAttributes="Bold"/>
+            </Border>
+
+            <!-- R / G / B rida koos liugurite, Entry ja värvilappidega -->
+            <!-- RED -->
+            <Grid ColumnDefinitions="24,*,70,36" ColumnSpacing="8" VerticalOptions="Center">
+                <Label Grid.Column="0" Text="R" TextColor="Red" FontAttributes="Bold"
+                       FontSize="16" VerticalOptions="Center"/>
+                <Slider Grid.Column="1" x:Name="sldRed"
+                        Minimum="0" Maximum="255"
+                        ThumbColor="Red" MinimumTrackColor="Red"
+                        ValueChanged="OnSliderChanged"/>
+                <Entry Grid.Column="2" x:Name="entRed"
+                       Text="0" Keyboard="Numeric"
+                       MaxLength="3" HorizontalTextAlignment="Center"
+                       TextChanged="OnEntryChanged"/>
+                <Border Grid.Column="3" x:Name="boxRed"
+                        Background="Red" WidthRequest="32" HeightRequest="32"
+                        StrokeThickness="0" VerticalOptions="Center">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="6"/></Border.StrokeShape>
+                </Border>
+            </Grid>
+
+            <!-- GREEN -->
+            <Grid ColumnDefinitions="24,*,70,36" ColumnSpacing="8" VerticalOptions="Center">
+                <Label Grid.Column="0" Text="G" TextColor="Green" FontAttributes="Bold"
+                       FontSize="16" VerticalOptions="Center"/>
+                <Slider Grid.Column="1" x:Name="sldGreen"
+                        Minimum="0" Maximum="255"
+                        ThumbColor="Green" MinimumTrackColor="Green"
+                        ValueChanged="OnSliderChanged"/>
+                <Entry Grid.Column="2" x:Name="entGreen"
+                       Text="0" Keyboard="Numeric"
+                       MaxLength="3" HorizontalTextAlignment="Center"
+                       TextChanged="OnEntryChanged"/>
+                <Border Grid.Column="3" x:Name="boxGreen"
+                        Background="Green" WidthRequest="32" HeightRequest="32"
+                        StrokeThickness="0" VerticalOptions="Center">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="6"/></Border.StrokeShape>
+                </Border>
+            </Grid>
+
+            <!-- BLUE -->
+            <Grid ColumnDefinitions="24,*,70,36" ColumnSpacing="8" VerticalOptions="Center">
+                <Label Grid.Column="0" Text="B" TextColor="Blue" FontAttributes="Bold"
+                       FontSize="16" VerticalOptions="Center"/>
+                <Slider Grid.Column="1" x:Name="sldBlue"
+                        Minimum="0" Maximum="255"
+                        ThumbColor="Blue" MinimumTrackColor="Blue"
+                        ValueChanged="OnSliderChanged"/>
+                <Entry Grid.Column="2" x:Name="entBlue"
+                       Text="0" Keyboard="Numeric"
+                       MaxLength="3" HorizontalTextAlignment="Center"
+                       TextChanged="OnEntryChanged"/>
+                <Border Grid.Column="3" x:Name="boxBlue"
+                        Background="Blue" WidthRequest="32" HeightRequest="32"
+                        StrokeThickness="0" VerticalOptions="Center">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="6"/></Border.StrokeShape>
+                </Border>
+            </Grid>
+
+            <!-- HEX kood sisestus -->
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10" Margin="0,5,0,0">
+                <Entry Grid.Column="0" x:Name="entHex"
+                       Placeholder="#RRGGBB"
+                       MaxLength="7"
+                       HorizontalTextAlignment="Center"
+                       FontSize="18" FontAttributes="Bold"/>
+                <Button Grid.Column="1" Text="Rakenda"
+                        Clicked="OnApplyHexClicked"
+                        BackgroundColor="DarkSlateBlue"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HeightRequest="44"/>
+            </Grid>
+
+            <!-- Nurkade ümarus (Stepper) -->
+            <Grid ColumnDefinitions="*,Auto,40" ColumnSpacing="10" Margin="0,5,0,0">
+                <Label Grid.Column="0" Text="Nurkade ümarus:"
+                       VerticalOptions="Center"/>
+                <Stepper Grid.Column="1" x:Name="stpCorner"
+                         Minimum="0" Maximum="75" Increment="5"
+                         ValueChanged="OnStepperValueChanged"/>
+                <Label Grid.Column="2" x:Name="lblCornerRadius"
+                       Text="0" FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <!-- Demo tekst (Stepper + Slider) -->
+            <Label x:Name="lblDemo"
+                   Text="Tere Maailm!"
+                   FontSize="20"
+                   HorizontalOptions="Center"
+                   TextColor="DarkSlateBlue"
+                   FontAttributes="Bold"
+                   Margin="0,5,0,0"/>
+
+            <Grid ColumnDefinitions="*,Auto,40" ColumnSpacing="10">
+                <Label Grid.Column="0" Text="Teksti suurus:" VerticalOptions="Center"/>
+                <Stepper Grid.Column="1" x:Name="stpFontSize"
+                         Minimum="10" Maximum="60" Increment="2" Value="20"
+                         ValueChanged="Stepper_Slider_ValueChanged"/>
+                <Label Grid.Column="2" x:Name="lblFontSizeValue"
+                       Text="20" FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,50" ColumnSpacing="10">
+                <Slider Grid.Column="0" x:Name="sldRotation"
+                        Minimum="0" Maximum="360" Value="0"
+                        ValueChanged="Stepper_Slider_ValueChanged"/>
+                <Label Grid.Column="1" x:Name="lblRotationValue"
+                       Text="0°" FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalTextAlignment="Start"/>
+            </Grid>
+            <Label Text="↑ Pöördenurk" FontSize="12" TextColor="Gray"
+                   HorizontalOptions="Center" Margin="0,-8,0,0"/>
+
+            <!-- Nupud -->
+            <Button Text="Juhuslik Värv"
+                    Clicked="OnRandomColorClicked"
+                    BackgroundColor="DarkSlateBlue"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="44"
+                    Margin="0,5,0,0"/>
+
+            <HorizontalStackLayout Spacing="12" HorizontalOptions="Center" Margin="0,5,0,10">
+                <Button Text="Tagasi"
+                        FontSize="16" FontFamily="BobloxFont"
+                        TextColor="Chocolate" BackgroundColor="Beige"
+                        CornerRadius="10" HeightRequest="40"
+                        Clicked="tagasi_Clicked"/>
+                <Button Text="Avaleht"
+                        FontSize="16" FontFamily="BobloxFont"
+                        TextColor="Chocolate" BackgroundColor="Beige"
+                        CornerRadius="10" HeightRequest="40"
+                        Clicked="avaleht_Clicked"/>
+                <Button Text="Edasi"
+                        FontSize="16" FontFamily="BobloxFont"
+                        TextColor="Chocolate" BackgroundColor="Beige"
+                        CornerRadius="10" HeightRequest="40"
+                        Clicked="edasi_Clicked"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

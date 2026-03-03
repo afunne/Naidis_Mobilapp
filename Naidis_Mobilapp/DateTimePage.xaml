@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.DateTimePage"
+             Title="Kuupäev ja Aeg">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20"
+                             Padding="30"
+                             VerticalOptions="Center">
+
+            <!-- AbsoluteLayout: lbl on kindlates koordinaatides, ülejäänud proportsionaalselt -->
+            <AbsoluteLayout HeightRequest="220">
+
+                <!-- Pealkiri kindlas koordinaadis -->
+                <Label x:Name="lblTitle"
+                       Text="Vali kuupäev ja aeg"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       AbsoluteLayout.LayoutBounds="0, 0, AutoSize, AutoSize"
+                       AbsoluteLayout.LayoutFlags="None"/>
+
+                <!-- DatePicker: 20% vasakult, 20% alt, 60% laiust, automaatne kõrgus -->
+                <DatePicker x:Name="datePicker"
+                            Format="dd.MM.yyyy"
+                            DateSelected="OnDateSelected"
+                            AbsoluteLayout.LayoutBounds="0.1, 0.3, 0.8, AutoSize"
+                            AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"/>
+
+                <!-- TimePicker: 20% vasakult, 65% alt, 60% laiust, automaatne kõrgus -->
+                <TimePicker x:Name="timePicker"
+                            Format="HH:mm:ss"
+                            AbsoluteLayout.LayoutBounds="0.1, 0.65, 0.8, AutoSize"
+                            AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+                            PropertyChanged="OnTimePickerPropertyChanged"/>
+
+                <!-- Valitud kuupäev/aeg näitab koordinaadis 0,180 -->
+                <Label x:Name="lblResult"
+                       Text="Valitud: -"
+                       FontSize="16"
+                       TextColor="DarkSlateBlue"
+                       AbsoluteLayout.LayoutBounds="0, 185, AutoSize, AutoSize"
+                       AbsoluteLayout.LayoutFlags="None"/>
+
+            </AbsoluteLayout>
+
+            <!-- Valitud kuupäev suur kuvamine -->
+            <Border Background="AliceBlue"
+                    Padding="15"
+                    HorizontalOptions="Center"
+                    WidthRequest="300">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="5">
+                    <Label x:Name="lblSelectedDate"
+                           Text="Kuupäev: -"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="DarkBlue"/>
+                    <Label x:Name="lblSelectedTime"
+                           Text="Kellaaeg: -"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="DarkGreen"/>
+                    <Label x:Name="lblWeekday"
+                           Text="Nädalapäev: -"
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           TextColor="DarkSlateGray"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Navigatsiooni nupud -->
+            <HorizontalStackLayout Spacing="15"
+                                   HorizontalOptions="Center"
+                                   Margin="0,10,0,0">
+                <Button Text="Tagasi"
+                        FontSize="18"
+                        FontFamily="BobloxFont"
+                        TextColor="Chocolate"
+                        BackgroundColor="Beige"
+                        CornerRadius="10"
+                        HeightRequest="40"
+                        Clicked="tagasi_Clicked"/>
+                <Button Text="Avaleht"
+                        FontSize="18"
+                        FontFamily="BobloxFont"
+                        TextColor="Chocolate"
+                        BackgroundColor="Beige"
+                        CornerRadius="10"
+                        HeightRequest="40"
+                        Clicked="avaleht_Clicked"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -112,7 +112,7 @@ public partial class FigurePage : ContentPage
 
     private void Liikumine(object? sender, EventArgs e)
     {
-        Button nupp = sender as Button;
+        if (sender is not Button nupp) return;
         if (nupp.ZIndex == 0)
         {
             Navigation.PushAsync(new TextPage());
@@ -123,7 +123,7 @@ public partial class FigurePage : ContentPage
         }
         else if (nupp.ZIndex == 2)
         {
-            Navigation.PushAsync(new FigurePage());
+            Navigation.PushAsync(new Timer_Page());
         }
     }
 }
