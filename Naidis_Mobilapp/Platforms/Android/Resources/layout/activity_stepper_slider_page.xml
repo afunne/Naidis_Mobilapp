@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    StepperSliderPage – RGB mudel
+    MAUI layout summary:
+      ScrollView
+        VerticalStackLayout (spacing=15, padding=20)
+          Border (colorBox – black rounded preview)         → CardView
+          Grid R row: Label "R", Slider, Entry, colour swatch  → GridLayout row
+          Grid G row                                            → GridLayout row
+          Grid B row                                            → GridLayout row
+          Grid HEX entry + "Rakenda" button                    → LinearLayout horizontal
+          Grid corner-radius stepper                           → LinearLayout horizontal
+          lblDemo "Tere Maailm!"                               → TextView
+          Grid font-size stepper                               → LinearLayout horizontal
+          Grid rotation slider                                 → LinearLayout horizontal
+          Label "↑ Pöördenurk"                                → TextView
+          Button "Juhuslik Värv"                              → Button
+          HorizontalStackLayout: Tagasi / Avaleht / Edasi     → LinearLayout horizontal
+
+    Notes:
+      • MAUI Stepper → LinearLayout with "−" Button, value TextView, "+" Button
+      • MAUI Border (colour swatch) → View with backgroundTint #RRGGBB
+      • Colour names mapped to hex:
+          Red #FF0000  Green #008000  Blue #0000FF
+          DarkSlateBlue #483D8B  Chocolate #D2691E  Beige #F5F5DC  White #FFFFFF
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- ======================================================
+             Colour preview box  (Border x:Name="ColorBox")
+             CardView with a centred hex-code label
+             ====================================================== -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/colorBox"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            app:cardBackgroundColor="#000000"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+
+            <TextView
+                android:id="@+id/lblHex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="#000000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- ======================================================
+             RED row:  "R" label | SeekBar | EditText | colour view
+             ====================================================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:text="R"
+                android:textColor="#FF0000"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <SeekBar
+                android:id="@+id/sldRed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="255"
+                android:progress="0"
+                android:progressTint="#FF0000"
+                android:thumbTint="#FF0000"
+                android:layout_marginStart="8dp" />
+
+            <EditText
+                android:id="@+id/entRed"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:inputType="number"
+                android:maxLength="3"
+                android:gravity="center"
+                android:layout_marginStart="8dp" />
+
+            <View
+                android:id="@+id/boxRed"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:backgroundTint="#FF0000"
+                android:background="@android:drawable/editbox_background"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- ======================================================
+             GREEN row: "G" label | SeekBar | EditText | colour view
+             ====================================================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:text="G"
+                android:textColor="#008000"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <SeekBar
+                android:id="@+id/sldGreen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="255"
+                android:progress="0"
+                android:progressTint="#008000"
+                android:thumbTint="#008000"
+                android:layout_marginStart="8dp" />
+
+            <EditText
+                android:id="@+id/entGreen"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:inputType="number"
+                android:maxLength="3"
+                android:gravity="center"
+                android:layout_marginStart="8dp" />
+
+            <View
+                android:id="@+id/boxGreen"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:backgroundTint="#008000"
+                android:background="@android:drawable/editbox_background"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- ======================================================
+             BLUE row: "B" label | SeekBar | EditText | colour view
+             ====================================================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:text="B"
+                android:textColor="#0000FF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <SeekBar
+                android:id="@+id/sldBlue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="255"
+                android:progress="0"
+                android:progressTint="#0000FF"
+                android:thumbTint="#0000FF"
+                android:layout_marginStart="8dp" />
+
+            <EditText
+                android:id="@+id/entBlue"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:inputType="number"
+                android:maxLength="3"
+                android:gravity="center"
+                android:layout_marginStart="8dp" />
+
+            <View
+                android:id="@+id/boxBlue"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:backgroundTint="#0000FF"
+                android:background="@android:drawable/editbox_background"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- ======================================================
+             HEX entry + Rakenda button
+             ====================================================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/entHex"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="#RRGGBB"
+                android:maxLength="7"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnApplyHex"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:text="Rakenda"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#483D8B"
+                android:layout_marginStart="10dp" />
+
+        </LinearLayout>
+
+        <!-- ======================================================
+             Corner-radius Stepper:
+             Label "Nurkade ümarus:" | [−] | value | [+]
+             ====================================================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nurkade ümarus:" />
+
+            <Button
+                android:id="@+id/btnCornerMinus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="−"
+                android:padding="0dp" />
+
+            <TextView
+                android:id="@+id/lblCornerRadius"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/btnCornerPlus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:padding="0dp" />
+
+        </LinearLayout>
+
+        <!-- ======================================================
+             Demo label
+             ====================================================== -->
+        <TextView
+            android:id="@+id/lblDemo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Tere Maailm!"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#483D8B"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- ======================================================
+             Font-size Stepper:
+             Label "Teksti suurus:" | [−] | value | [+]
+             ====================================================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Teksti suurus:" />
+
+            <Button
+                android:id="@+id/btnFontMinus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="−"
+                android:padding="0dp" />
+
+            <TextView
+                android:id="@+id/lblFontSizeValue"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/btnFontPlus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:padding="0dp" />
+
+        </LinearLayout>
+
+        <!-- ======================================================
+             Rotation slider row
+             ====================================================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="0dp">
+
+            <SeekBar
+                android:id="@+id/sldRotation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="360"
+                android:progress="0" />
+
+            <TextView
+                android:id="@+id/lblRotationValue"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="0°"
+                android:textStyle="bold"
+                android:gravity="start"
+                android:layout_marginStart="10dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="↑ Pöördenurk"
+            android:textSize="12sp"
+            android:textColor="#808080"
+            android:layout_marginTop="-8dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- ======================================================
+             "Juhuslik Värv" button
+             ====================================================== -->
+        <Button
+            android:id="@+id/btnRandomColor"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="Juhuslik Värv"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#483D8B"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- ======================================================
+             Navigation buttons: Tagasi / Avaleht / Edasi
+             ====================================================== -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:id="@+id/btnTagasi"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Tagasi"
+                android:textSize="16sp"
+                android:textColor="#D2691E"
+                android:backgroundTint="#F5F5DC"
+                android:layout_marginEnd="12dp" />
+
+            <Button
+                android:id="@+id/btnAvaleht"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Avaleht"
+                android:textSize="16sp"
+                android:textColor="#D2691E"
+                android:backgroundTint="#F5F5DC"
+                android:layout_marginEnd="12dp" />
+
+            <Button
+                android:id="@+id/btnEdasi"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Edasi"
+                android:textSize="16sp"
+                android:textColor="#D2691E"
+                android:backgroundTint="#F5F5DC" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

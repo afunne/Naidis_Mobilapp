@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Timer_Page
+    MAUI layout:
+      VerticalStackLayout (gravity=center, spacing=20, padding=20)
+        FlexLayout (Direction=Column, AlignItems=Center, JustifyContent=SpaceEvenly, Height=200)
+          Label x:Name="lbl"   "Vajuta nupule kaivitamiseks"  (tappable)
+          Button x:Name="timer_btn"  "Naita aega"
+        Button x:Name="tagasi"  "Tagasi"
+        Button x:Name="edasi"   "Edasi"
+
+    FlexLayout with SpaceEvenly → LinearLayout weight trick;
+    tap-gesture on Label → android:clickable="true" + onClick attribute.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <!-- FlexLayout equivalent: fixed-height vertical LinearLayout with even spacing -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <!-- lbl (tappable label) -->
+        <TextView
+            android:id="@+id/lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vajuta nupule kaivitamiseks"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:backgroundTint="#F5F5DC"
+            android:background="@android:drawable/editbox_background"
+            android:padding="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="20dp" />
+
+        <!-- timer_btn -->
+        <Button
+            android:id="@+id/timer_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Naita aega"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#008080" />
+
+    </LinearLayout>
+
+    <!-- tagasi -->
+    <Button
+        android:id="@+id/btnTagasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tagasi"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#808080"
+        android:layout_marginBottom="20dp" />
+
+    <!-- edasi -->
+    <Button
+        android:id="@+id/btnEdasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edasi"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#008080" />
+
+</LinearLayout>

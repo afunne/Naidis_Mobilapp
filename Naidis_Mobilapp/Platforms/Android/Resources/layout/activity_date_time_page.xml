@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    DateTimePage – Kuupäev ja Aeg
+    MAUI source layout:
+      ScrollView
+        VerticalStackLayout (spacing=20, padding=30)
+          AbsoluteLayout (HeightRequest=220)
+            lblTitle  – fixed at (0,0)
+            datePicker – proportional placement
+            timePicker – proportional placement
+            lblResult  – fixed at (0,185)
+          Border (AliceBlue card, rounded corners)
+            VerticalStackLayout
+              lblSelectedDate / lblSelectedTime / lblWeekday
+          HorizontalStackLayout
+            Button "Tagasi" / Button "Avaleht"
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:gravity="center_vertical">
+
+        <!-- ======================================================
+             AbsoluteLayout equivalent: RelativeLayout (220dp tall)
+             ====================================================== -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginBottom="20dp">
+
+            <!-- lblTitle at top-left (0,0) -->
+            <TextView
+                android:id="@+id/lblTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vali kuupäev ja aeg"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <!-- DatePicker ~30 % from top, centred horizontally -->
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp" />
+
+            <!-- TimePicker ~65 % from top, centred horizontally -->
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="130dp"
+                android:timePickerMode="spinner" />
+
+            <!-- lblResult at ~185dp from top -->
+            <TextView
+                android:id="@+id/lblResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valitud: -"
+                android:textSize="16sp"
+                android:textColor="#2F4F4F"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="185dp" />
+
+        </RelativeLayout>
+
+        <!-- ======================================================
+             Border (AliceBlue card, rounded) – CardView equivalent
+             ====================================================== -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            app:cardBackgroundColor="#F0F8FF"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/lblSelectedDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kuupäev: -"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#00008B"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5dp" />
+
+                <TextView
+                    android:id="@+id/lblSelectedTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kellaaeg: -"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#006400"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5dp" />
+
+                <TextView
+                    android:id="@+id/lblWeekday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nädalapäev: -"
+                    android:textSize="16sp"
+                    android:textColor="#2F4F4F"
+                    android:layout_gravity="center_horizontal" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ======================================================
+             Navigation buttons: HorizontalStackLayout
+             ====================================================== -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnTagasi"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Tagasi"
+                android:textSize="18sp"
+                android:textColor="#D2691E"
+                android:backgroundTint="#F5F5DC"
+                android:layout_marginEnd="15dp" />
+
+            <Button
+                android:id="@+id/btnAvaleht"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Avaleht"
+                android:textSize="18sp"
+                android:textColor="#D2691E"
+                android:backgroundTint="#F5F5DC" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
