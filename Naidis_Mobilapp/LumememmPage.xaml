@@ -1,6 +1,276 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
              x:Class="Naidis_Mobilapp.LumememmPage"
              Title="Lumememm">
+
+    <ScrollView x:Name="scrollView">
+        <VerticalStackLayout Spacing="14" Padding="20">
+
+            <!-- Status label -->
+            <Label x:Name="statusLabel"
+                   Text="Tere, lumememm!"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="DarkSlateBlue" />
+
+            <!-- Snowman frame: winter background + AbsoluteLayout -->
+            <Border HorizontalOptions="Center"
+                    StrokeThickness="3"
+                    Stroke="SteelBlue">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="4,4" Radius="12" Opacity="0.4" />
+                </Border.Shadow>
+                <Border.StrokeShape>
+                    <shapes:RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+                <Grid WidthRequest="280" HeightRequest="400" HorizontalOptions="Center">
+
+                    <!-- Background image -->
+                    <Image x:Name="bgImage"
+                           Source="winterbg.png"
+                           Aspect="AspectFill"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Fill" />
+
+                    <!-- Snowman AbsoluteLayout -->
+                    <AbsoluteLayout x:Name="absLayout"
+                                    HeightRequest="380"
+                                    WidthRequest="260"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+
+                        <!-- Body (big circle) — rendered first so head is on top -->
+                        <Border x:Name="keha"
+                                BackgroundColor="White"
+                                HeightRequest="160" WidthRequest="160"
+                                Padding="0" StrokeThickness="1" Stroke="LightGray"
+                                AbsoluteLayout.LayoutBounds="0.5,0.56,160,160"
+                                AbsoluteLayout.LayoutFlags="XProportional,YProportional">
+                            <Border.StrokeShape>
+                                <shapes:Ellipse WidthRequest="160" HeightRequest="160" />
+                            </Border.StrokeShape>
+                        </Border>
+
+                        <!-- Head (small circle) -->
+                        <Border x:Name="pea"
+                                BackgroundColor="White"
+                                HeightRequest="110" WidthRequest="110"
+                                Padding="0" StrokeThickness="1" Stroke="LightGray"
+                                AbsoluteLayout.LayoutBounds="0.5,0.15,110,110"
+                                AbsoluteLayout.LayoutFlags="XProportional,YProportional">
+                            <Border.StrokeShape>
+                                <shapes:Ellipse WidthRequest="110" HeightRequest="110" />
+                            </Border.StrokeShape>
+                        </Border>
+
+                        <!-- Hat body -->
+                        <BoxView x:Name="ambar"
+                                 Color="Black"
+                                 CornerRadius="5,5,0,0"
+                                 HeightRequest="50" WidthRequest="72"
+                                 AbsoluteLayout.LayoutBounds="0.5,0.0,72,50"
+                                 AbsoluteLayout.LayoutFlags="XProportional,YProportional" />
+
+                        <!-- Hat brim -->
+                        <BoxView x:Name="ambarServ"
+                                 Color="Black"
+                                 CornerRadius="4"
+                                 HeightRequest="10" WidthRequest="100"
+                                 AbsoluteLayout.LayoutBounds="0.5,0.135,100,10"
+                                 AbsoluteLayout.LayoutFlags="XProportional,YProportional" />
+
+                        <!-- Left eye -->
+                        <Border x:Name="silmVasakpoolne"
+                                BackgroundColor="Black"
+                                HeightRequest="14" WidthRequest="14"
+                                Padding="0" StrokeThickness="0"
+                                AbsoluteLayout.LayoutBounds="0.35,0.23,14,14"
+                                AbsoluteLayout.LayoutFlags="XProportional,YProportional">
+                            <Border.StrokeShape>
+                                <shapes:Ellipse WidthRequest="14" HeightRequest="14" />
+                            </Border.StrokeShape>
+                        </Border>
+
+                        <!-- Right eye -->
+                        <Border x:Name="silmParempoolne"
+                                BackgroundColor="Black"
+                                HeightRequest="14" WidthRequest="14"
+                                Padding="0" StrokeThickness="0"
+                                AbsoluteLayout.LayoutBounds="0.65,0.23,14,14"
+                                AbsoluteLayout.LayoutFlags="XProportional,YProportional">
+                            <Border.StrokeShape>
+                                <shapes:Ellipse WidthRequest="14" HeightRequest="14" />
+                            </Border.StrokeShape>
+                        </Border>
+
+                        <!-- Nose (carrot triangle) -->
+                        <shapes:Polygon x:Name="ninaOts"
+                                        Fill="OrangeRed"
+                                        StrokeThickness="0"
+                                        Points="0,0 0,12 38,6"
+                                        WidthRequest="38" HeightRequest="12"
+                                        AbsoluteLayout.LayoutBounds="0.57,0.295,38,12"
+                                        AbsoluteLayout.LayoutFlags="XProportional,YProportional" />
+
+                        <!-- Button 1 -->
+                        <Border x:Name="nupp1"
+                                BackgroundColor="Black"
+                                HeightRequest="16" WidthRequest="16"
+                                Padding="0" StrokeThickness="0"
+                                AbsoluteLayout.LayoutBounds="0.5,0.575,16,16"
+                                AbsoluteLayout.LayoutFlags="XProportional,YProportional">
+                            <Border.StrokeShape>
+                                <shapes:Ellipse WidthRequest="16" HeightRequest="16" />
+                            </Border.StrokeShape>
+                        </Border>
+
+                        <!-- Button 2 -->
+                        <Border x:Name="nupp2"
+                                BackgroundColor="Black"
+                                HeightRequest="16" WidthRequest="16"
+                                Padding="0" StrokeThickness="0"
+                                AbsoluteLayout.LayoutBounds="0.5,0.635,16,16"
+                                AbsoluteLayout.LayoutFlags="XProportional,YProportional">
+                            <Border.StrokeShape>
+                                <shapes:Ellipse WidthRequest="16" HeightRequest="16" />
+                            </Border.StrokeShape>
+                        </Border>
+
+                        <!-- Button 3 -->
+                        <Border x:Name="nupp3"
+                                BackgroundColor="Black"
+                                HeightRequest="16" WidthRequest="16"
+                                Padding="0" StrokeThickness="0"
+                                AbsoluteLayout.LayoutBounds="0.5,0.695,16,16"
+                                AbsoluteLayout.LayoutFlags="XProportional,YProportional">
+                            <Border.StrokeShape>
+                                <shapes:Ellipse WidthRequest="16" HeightRequest="16" />
+                            </Border.StrokeShape>
+                        </Border>
+
+                    </AbsoluteLayout>
+                </Grid>
+            </Border>
+
+            <!-- Picker row -->
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Picker x:Name="tegevusPicker"
+                        Grid.Column="0"
+                        Title="Vali tegevus..."
+                        FontSize="16"
+                        HorizontalOptions="Fill">
+                    <Picker.Items>
+                        <x:String>Peida lumememm</x:String>
+                        <x:String>Näita lumememm</x:String>
+                        <x:String>Muuda värvi</x:String>
+                        <x:String>Juhuslik värv</x:String>
+                        <x:String>Sulata</x:String>
+                        <x:String>Tantsi</x:String>
+                        <x:String>TextToSpeech</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Button Grid.Column="1"
+                        Text="▶ Käivita"
+                        BackgroundColor="DarkSlateBlue"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="44"
+                        Clicked="OnTegevusClicked" />
+            </Grid>
+
+            <!-- Opacity slider -->
+            <Label x:Name="opacityLabel"
+                   Text="Läbipaistvus:"
+                   FontSize="14"
+                   TextColor="Gray" />
+            <Slider x:Name="opacitySlider"
+                    Minimum="0" Maximum="1" Value="1"
+                    ValueChanged="OnOpacityChanged" />
+
+            <!-- Colour picker (nähtav ainult "Muuda värvi" valikul) -->
+            <VerticalStackLayout x:Name="colorPickerPanel" IsVisible="False" Spacing="8">
+                <Border x:Name="colorPreview"
+                        BackgroundColor="White"
+                        HeightRequest="44"
+                        HorizontalOptions="Fill"
+                        StrokeThickness="1"
+                        Stroke="LightGray">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                </Border>
+                <Grid ColumnDefinitions="16,*,40" ColumnSpacing="8">
+                    <Label Grid.Column="0" Text="R" TextColor="Red" FontAttributes="Bold"
+                           FontSize="14" VerticalOptions="Center"/>
+                    <Slider Grid.Column="1" x:Name="sldR"
+                            Minimum="180" Maximum="255" Value="255"
+                            ThumbColor="Red" MinimumTrackColor="Red"
+                            ValueChanged="OnColorSliderChanged"/>
+                    <Label Grid.Column="2" x:Name="lblR"
+                           Text="255" FontSize="13"
+                           VerticalOptions="Center" HorizontalTextAlignment="End"/>
+                </Grid>
+                <Grid ColumnDefinitions="16,*,40" ColumnSpacing="8">
+                    <Label Grid.Column="0" Text="G" TextColor="Green" FontAttributes="Bold"
+                           FontSize="14" VerticalOptions="Center"/>
+                    <Slider Grid.Column="1" x:Name="sldG"
+                            Minimum="180" Maximum="255" Value="255"
+                            ThumbColor="Green" MinimumTrackColor="Green"
+                            ValueChanged="OnColorSliderChanged"/>
+                    <Label Grid.Column="2" x:Name="lblG"
+                           Text="255" FontSize="13"
+                           VerticalOptions="Center" HorizontalTextAlignment="End"/>
+                </Grid>
+                <Grid ColumnDefinitions="16,*,40" ColumnSpacing="8">
+                    <Label Grid.Column="0" Text="B" TextColor="Blue" FontAttributes="Bold"
+                           FontSize="14" VerticalOptions="Center"/>
+                    <Slider Grid.Column="1" x:Name="sldB"
+                            Minimum="200" Maximum="255" Value="255"
+                            ThumbColor="Blue" MinimumTrackColor="Blue"
+                            ValueChanged="OnColorSliderChanged"/>
+                    <Label Grid.Column="2" x:Name="lblB"
+                           Text="255" FontSize="13"
+                           VerticalOptions="Center" HorizontalTextAlignment="End"/>
+                </Grid>
+            </VerticalStackLayout>
+
+            <!-- TTS entry (nähtav ainult "TextToSpeech" valikul) -->
+            <Entry x:Name="ttsEntry"
+                   IsVisible="False"
+                   Placeholder="Jõulud tulevad! Tere lumememm!"
+                   FontSize="15"
+                   ClearButtonVisibility="WhileEditing" />
+
+            <!-- Bottom buttons -->
+            <HorizontalStackLayout Spacing="12" HorizontalOptions="Center">
+                <Button x:Name="btnOo"
+                        Text="Öörežiim"
+                        FontSize="15"
+                        BackgroundColor="DarkSlateBlue"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="40"
+                        Clicked="OnOoClicked" />
+                <Button Text="← Tagasi"
+                        FontSize="15"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="40"
+                        Clicked="OnTagasiClicked" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

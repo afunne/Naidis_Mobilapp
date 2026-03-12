@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.TextDemoPage"
+             Title="Teksti demo">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+
+            <!-- Demo tekst -->
+            <Label x:Name="lblDemo"
+                   Text="Tere Maailm!"
+                   FontSize="20"
+                   HorizontalOptions="Center"
+                   TextColor="DarkSlateBlue"
+                   FontAttributes="Bold"
+                   Margin="0,5,0,0"/>
+
+            <!-- Teksti suurus (Stepper) -->
+            <Grid ColumnDefinitions="*,Auto,40" ColumnSpacing="10">
+                <Label Grid.Column="0" Text="Teksti suurus:" VerticalOptions="Center"/>
+                <Stepper Grid.Column="1" x:Name="stpFontSize"
+                         Minimum="10" Maximum="60" Increment="2" Value="20"
+                         ValueChanged="OnStepperSliderChanged"/>
+                <Label Grid.Column="2" x:Name="lblFontSizeValue"
+                       Text="20" FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <!-- Pöördenurk (Slider) -->
+            <Grid ColumnDefinitions="*,50" ColumnSpacing="10">
+                <Slider Grid.Column="0" x:Name="sldRotation"
+                        Minimum="0" Maximum="360" Value="0"
+                        ValueChanged="OnStepperSliderChanged"/>
+                <Label Grid.Column="1" x:Name="lblRotationValue"
+                       Text="0°" FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalTextAlignment="Start"/>
+            </Grid>
+            <Label Text="↑ Pöördenurk" FontSize="12" TextColor="Gray"
+                   HorizontalOptions="Center" Margin="0,-8,0,0"/>
+
+            <!-- Nupud -->
+            <HorizontalStackLayout Spacing="12" HorizontalOptions="Center" Margin="0,10,0,10">
+                <Button Text="Tagasi"
+                        FontSize="16" FontFamily="BobloxFont"
+                        TextColor="Chocolate" BackgroundColor="Beige"
+                        CornerRadius="10" HeightRequest="40"
+                        Clicked="OnTagasiClicked"/>
+                <Button Text="Avaleht"
+                        FontSize="16" FontFamily="BobloxFont"
+                        TextColor="Chocolate" BackgroundColor="Beige"
+                        CornerRadius="10" HeightRequest="40"
+                        Clicked="OnAvalehtClicked"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

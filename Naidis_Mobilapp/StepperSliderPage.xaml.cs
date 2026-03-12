@@ -10,7 +10,7 @@ public partial class StepperSliderPage : ContentPage
         UpdateColor();
     }
 
-    // Slider muudab värvi → uuendab Entry teksti ka
+    // Slider muudab värvi uuendab Entry teksti ka
     private void OnSliderChanged(object sender, ValueChangedEventArgs e)
     {
         if (_updating) return;
@@ -22,7 +22,7 @@ public partial class StepperSliderPage : ContentPage
         UpdateColor();
     }
 
-    // Entry tekstimuutus → uuendab Sliderit ka
+    // Entry tekstimuutus uuendab Sliderit ka
     private void OnEntryChanged(object sender, TextChangedEventArgs e)
     {
         if (_updating) return;
@@ -37,18 +37,20 @@ public partial class StepperSliderPage : ContentPage
     // HEX koodi rakendamine
     private void OnApplyHexClicked(object sender, EventArgs e)
     {
-        string hex = entHex.Text?.Trim().TrimStart('#') ?? "";
-        if (hex.Length == 6 &&
-            int.TryParse(hex[0..2], System.Globalization.NumberStyles.HexNumber, null, out int r) &&
-            int.TryParse(hex[2..4], System.Globalization.NumberStyles.HexNumber, null, out int g) &&
-            int.TryParse(hex[4..6], System.Globalization.NumberStyles.HexNumber, null, out int b))
+        if (Color.TryParse(entHex.Text, out Color selectedColor))
         {
             _updating = true;
-            sldRed.Value   = r; entRed.Text   = r.ToString();
+            int r = (int)(selectedColor.Red * 255);
+            int g = (int)(selectedColor.Green * 255);
+            int b = (int)(selectedColor.Blue * 255);
+
+            sldRed.Value = r; entRed.Text = r.ToString();
             sldGreen.Value = g; entGreen.Text = g.ToString();
-            sldBlue.Value  = b; entBlue.Text  = b.ToString();
+            sldBlue.Value = b; entBlue.Text = b.ToString();
+
             _updating = false;
             UpdateColor();
+            entHex.TextColor = Colors.Black;
         }
         else
         {
@@ -66,11 +68,7 @@ public partial class StepperSliderPage : ContentPage
     // Teksti suurus (Stepper) ja pöördenurk (Slider)
     private void Stepper_Slider_ValueChanged(object sender, ValueChangedEventArgs e)
     {
-        if (lblDemo == null) return;
-        lblDemo.FontSize  = stpFontSize.Value;
-        lblFontSizeValue.Text = stpFontSize.Value.ToString("0");
-        lblDemo.Rotation  = sldRotation.Value;
-        lblRotationValue.Text = $"{sldRotation.Value:0}°";
+        
     }
 
     private void UpdateColor()
@@ -108,5 +106,5 @@ public partial class StepperSliderPage : ContentPage
         => await Navigation.PopToRootAsync();
 
     private async void edasi_Clicked(object sender, EventArgs e)
-        => await Navigation.PushAsync(new DateTimePage());
+        => await Navigation.PushAsync(new TextDemoPage());
 }
