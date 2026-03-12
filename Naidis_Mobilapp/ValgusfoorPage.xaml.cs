@@ -20,6 +20,7 @@ public partial class ValgusfoorPage : ContentPage
             else return Color.FromRgb(255, 50, 50);
         }
     }
+
     Color kollaneVarv
     {
         get
@@ -28,6 +29,7 @@ public partial class ValgusfoorPage : ContentPage
             else return Color.FromRgb(255, 230, 0);
         }
     }
+
     Color rohelineVarv
     {
         get
@@ -36,6 +38,7 @@ public partial class ValgusfoorPage : ContentPage
             else return Color.FromRgb(50, 230, 50);
         }
     }
+
     Color hallVarv
     {
         get
@@ -44,6 +47,7 @@ public partial class ValgusfoorPage : ContentPage
             else return hallOn;
         }
     }
+
     Color taustVarv
     {
         get
@@ -52,6 +56,7 @@ public partial class ValgusfoorPage : ContentPage
             else return Color.FromRgb(60, 60, 60);
         }
     }
+
     Color taustaVarv
     {
         get
@@ -96,7 +101,7 @@ public partial class ValgusfoorPage : ContentPage
         kollane.Fill  = new SolidColorBrush(kollaneVarv);
         roheline.Fill = new SolidColorBrush(rohelineVarv);
         vsl.BackgroundColor   = taustaVarv;
-        BackgroundColor       = taustaVarv;
+        BackgroundColor = taustaVarv;
         statusLabel.TextColor = ooRezsiim ? Colors.White : Colors.Black;
         statusLabel.Text = "Vali valgus";
     }
@@ -116,52 +121,116 @@ public partial class ValgusfoorPage : ContentPage
         roheline.Fill = new SolidColorBrush(hallVarv);
         vsl.BackgroundColor   = taustaVarv;
         BackgroundColor       = taustaVarv;
-        statusLabel.TextColor = ooRezsiim ? Colors.White : Colors.Black;
+        if (ooRezsiim)
+        {
+            statusLabel.TextColor = Colors.White;
+        }
+        else
+        {
+            statusLabel.TextColor = Colors.Black;
+        }
     }
 
     // Automaatrežiim – vahetab tulesid iga 2 sek
+    //private async void OnAutoClicked(object? sender, EventArgs e)
+    //{
+    //    if (autoRezsiim)
+    //    {
+    //        StopAuto();
+    //        btnAuto.Text = "⏱ Automaat";
+    //        return;
+    //    }
+    //    if (!foorSees) OnSisseClicked(null, EventArgs.Empty);
+
+    //    autoRezsiim = true;
+    //    btnAuto.Text = "⏹ Peata";
+    //    autoCts = new CancellationTokenSource();
+    //    var token = autoCts.Token;
+
+    //    var tsüklid = new (Microsoft.Maui.Controls.Shapes.Ellipse tuliEl, Color varv, string tekst)[]
+    //    {
+    //        (punane,   punaneVarv,   "Seisa! 🛑"),
+    //        (kollane,  kollaneVarv,  "Valmista! 🟡"),
+    //        (roheline, rohelineVarv, "Sõida! 🟢")
+    //    };
+
+    //    try
+    //    {
+    //        int i = 0;
+    //        while (!token.IsCancellationRequested)
+    //        {
+    //            punane.Fill   = new SolidColorBrush(hallVarv);
+    //            kollane.Fill  = new SolidColorBrush(hallVarv);
+    //            roheline.Fill = new SolidColorBrush(hallVarv);
+
+    //            var (tuliEl, varv, tekst) = tsüklid[i % 3];
+    //            tuliEl.Fill      = new SolidColorBrush(varv);
+    //            statusLabel.Text = tekst;
+
+    //            //int viide = (i % 3 == 1) ? 1000 : 2000; // else if
+    //            int viide;
+
+    //            if (i % 3 == 1)
+    //            {
+    //                viide = 1000;
+    //            }
+    //            else
+    //            {
+    //                viide = 2000;
+    //            }
+    //            await Task.Delay(viide, token);
+    //            i++;
+    //        }
+    //    }
+    //    catch (TaskCanceledException) { }
+    //}
+
     private async void OnAutoClicked(object? sender, EventArgs e)
     {
         if (autoRezsiim)
         {
-            StopAuto();
+            autoRezsiim = false;
             btnAuto.Text = "⏱ Automaat";
             return;
         }
+
         if (!foorSees) OnSisseClicked(null, EventArgs.Empty);
 
         autoRezsiim = true;
         btnAuto.Text = "⏹ Peata";
-        autoCts = new CancellationTokenSource();
-        var token = autoCts.Token;
 
-        var tsüklid = new (Microsoft.Maui.Controls.Shapes.Ellipse tuliEl, Color varv, string tekst)[]
+        var tsüklid = new[]
         {
-            (punane,   punaneVarv,   "Seisa! 🛑"),
-            (kollane,  kollaneVarv,  "Valmista! 🟡"),
-            (roheline, rohelineVarv, "Sõida! 🟢")
-        };
+        (punane,   punaneVarv,   "Seisa! 🛑"),
+        (kollane,  kollaneVarv,  "Valmista! 🟡"),
+        (roheline, rohelineVarv, "Sõida! 🟢")
+    };
 
-        try
+        int i = 0;
+        while (autoRezsiim)
         {
-            int i = 0;
-            while (!token.IsCancellationRequested)
+            punane.Fill = kollane.Fill = roheline.Fill = new SolidColorBrush(hallVarv);
+
+            var (tuliEl, varv, tekst) = tsüklid[i % 3];
+
+            tuliEl.Fill = new SolidColorBrush(varv);
+            statusLabel.Text = tekst;
+
+            int viide = (i % 3 == 1) ? 1000 : 2000;
+
+            try
             {
-                punane.Fill   = new SolidColorBrush(hallVarv);
-                kollane.Fill  = new SolidColorBrush(hallVarv);
-                roheline.Fill = new SolidColorBrush(hallVarv);
-
-                var (tuliEl, varv, tekst) = tsüklid[i % 3];
-                tuliEl.Fill      = new SolidColorBrush(varv);
-                statusLabel.Text = tekst;
-
-                int viide = (i % 3 == 1) ? 1000 : 2000;
-                await Task.Delay(viide, token);
-                i++;
+                await Task.Delay(viide);
             }
+            catch { break; }
+
+            if (!autoRezsiim) break;
+
+            i++;
         }
-        catch (TaskCanceledException) { }
     }
+
+
 
     void StopAuto()
     {
@@ -174,7 +243,14 @@ public partial class ValgusfoorPage : ContentPage
     private void OnOoClicked(object? sender, EventArgs e)
     {
         ooRezsiim = !ooRezsiim;
-        btnOo.Text = ooRezsiim ? "☀️ Päevarežiim" : "🌙 Öörežiim";
+        if (ooRezsiim)
+        {
+            btnOo.Text = "☀️ Päevarežiim";
+        }
+        else
+        {
+            btnOo.Text = "🌙 Öörežiim";
+        }
         if (foorSees)
             OnSisseClicked(null, EventArgs.Empty);
         else

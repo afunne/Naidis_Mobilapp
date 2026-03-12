@@ -87,15 +87,24 @@ public partial class StepperSliderPage : ContentPage
         entHex.Text      = hex;
         entHex.TextColor = Colors.Black;
 
-        lblHex.TextColor = (r + g + b > 380) ? Colors.Black : Colors.White;
+        if (r + g + b > 380)
+        {
+            lblHex.TextColor = Colors.Black;
+        }
+        else
+        {
+            lblHex.TextColor = Colors.White;
+        }
     }
 
     private async void OnRandomColorClicked(object sender, EventArgs e)
     {
         var rnd = new Random();
         // Animatsiooniga liugurid liiguvad järjestikku
-        sldRed.Value   = rnd.Next(0, 256); await Task.Delay(60);
-        sldGreen.Value = rnd.Next(0, 256); await Task.Delay(60);
+        sldRed.Value   = rnd.Next(0, 256);
+        await Task.Delay(60);
+        sldGreen.Value = rnd.Next(0, 256);
+        await Task.Delay(60);
         sldBlue.Value  = rnd.Next(0, 256);
     }
 

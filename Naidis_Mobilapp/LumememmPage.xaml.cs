@@ -36,7 +36,7 @@ public partial class LumememmPage : ContentPage
 
         // Show/hide extra panels based on selection
         colorPickerPanel.IsVisible = valitud == "Muuda värvi";
-        ttsEntry.IsVisible         = valitud == "TextToSpeech";
+        ttsEntry.IsVisible = valitud == "TextToSpeech";
         switch (valitud)
         {
             case "Peida lumememm":
@@ -56,13 +56,13 @@ public partial class LumememmPage : ContentPage
             case "Juhuslik värv":
                 var rnd = new Random();
                 Color juhuslik = Color.FromRgb(rnd.Next(180, 256), rnd.Next(180, 256), rnd.Next(200, 256));
-                pea.BackgroundColor          = juhuslik;
-                keha.BackgroundColor         = juhuslik;
+                pea.BackgroundColor = juhuslik;
+                keha.BackgroundColor = juhuslik;
                 colorPreview.BackgroundColor = juhuslik;
                 // sync sliders to the new colour
-                sldR.Value = (int)(juhuslik.Red   * 255);
+                sldR.Value = (int)(juhuslik.Red * 255);
                 sldG.Value = (int)(juhuslik.Green * 255);
-                sldB.Value = (int)(juhuslik.Blue  * 255);
+                sldB.Value = (int)(juhuslik.Blue * 255);
                 SetStatus("Juhuslik värv valitud!");
                 break;
 
@@ -74,7 +74,7 @@ public partial class LumememmPage : ContentPage
                 );
                 SetStatus("Lumememm sulanud");
                 absLayout.Opacity = 1;
-                absLayout.Scale   = 1;
+                absLayout.Scale = 1;
                 foreach (var v in memmeOsad) v.IsVisible = true;
                 opacitySlider.Value = 1;
                 break;
@@ -117,8 +117,8 @@ public partial class LumememmPage : ContentPage
         lblB.Text = b.ToString();
 
         Color varv = Color.FromRgb(r, g, b);
-        pea.BackgroundColor          = varv;
-        keha.BackgroundColor         = varv;
+        pea.BackgroundColor = varv;
+        keha.BackgroundColor = varv;
         colorPreview.BackgroundColor = varv;
     }
 
@@ -134,7 +134,6 @@ public partial class LumememmPage : ContentPage
         {
             btnOo.Text = "Päevarežiim";
             bgImage.Source = "winterbgnight.jpg";
-
             scrollView.BackgroundColor = Color.FromRgb(15, 15, 30);
             statusLabel.TextColor = Colors.LightCyan;
             opacityLabel.TextColor = Colors.White;
@@ -143,23 +142,22 @@ public partial class LumememmPage : ContentPage
             tegevusPicker.BackgroundColor = Color.FromRgb(40, 40, 60);
 
             Color panelBg = Color.FromRgb(200, 220, 255);
-            pea.BackgroundColor  = panelBg;
+            pea.BackgroundColor = panelBg;
             keha.BackgroundColor = panelBg;
         }
         else
         {
             btnOo.Text = "Öörežiim";
             bgImage.Source = "winterbg.png";
-
             scrollView.BackgroundColor = Colors.White;
             statusLabel.TextColor = Colors.DarkSlateBlue;
             opacityLabel.TextColor = Colors.Gray;
             tegevusPicker.TextColor = Colors.Black;
             tegevusPicker.TitleColor = Colors.Gray;
             tegevusPicker.BackgroundColor = Colors.White;
-
-            pea.BackgroundColor  = Colors.White;
+            pea.BackgroundColor = Colors.White;
             keha.BackgroundColor = Colors.White;
         }
     }
+
 }
