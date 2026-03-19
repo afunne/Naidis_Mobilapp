@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Extensions;
 using Microsoft.Maui.Controls;
 
 namespace Naidis_Mobilapp
@@ -21,7 +22,7 @@ namespace Naidis_Mobilapp
 
         private async void OnThemeClicked(object sender, EventArgs e)
         {
-            var nav = Application.Current.MainPage as NavigationPage;
+            var nav = Window?.Page as NavigationPage;
             if (nav != null && nav.CurrentPage is TripsTrapsTrullPage gamePage)
             {
                 gamePage.ToggleTheme();

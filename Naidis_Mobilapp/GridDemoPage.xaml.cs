@@ -12,7 +12,9 @@ namespace Naidis_Mobilapp
 
         private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
         {
-            var picker = sender as Picker;
+            if (sender is not Picker picker)
+                return;
+
             switch (picker.SelectedIndex)
             {
                 case 0:

@@ -14,7 +14,7 @@ namespace Naidis_Mobilapp
 
         private void OnOkClicked(object sender, EventArgs e)
         {
-            Close();
+            _ = CloseAsync();
         }
     }
 }

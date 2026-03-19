@@ -3,14 +3,14 @@ namespace Naidis_Mobilapp;
 public partial class ValgusfoorPage : ContentPage
 {
     // Olekud
-    bool foorSees    = false;
-    bool ooRezsiim   = false;
+    bool foorSees = false;
+    bool ooRezsiim = false;
     bool autoRezsiim = false;
     CancellationTokenSource? autoCts;
 
     // Värvid
-    readonly Color hallOn  = Color.FromRgb(180, 180, 180);
-    readonly Color hallOff = Color.FromRgb(50,  50,  50);
+    readonly Color hallOn = Color.FromRgb(180, 180, 180);
+    readonly Color hallOff = Color.FromRgb(50, 50, 50);
 
     Color punaneVarv
     {
@@ -71,8 +71,8 @@ public partial class ValgusfoorPage : ContentPage
         InitializeComponent();
 
         // Tap gesture'id (ainult töötavad kui foor sees)
-        LisaTap(punane,   lblPunane,   Colors.Red,       "Seisa! 🛑");
-        LisaTap(kollane,  lblKollane,  Colors.Yellow,    "Valmista! 🟡");
+        LisaTap(punane, lblPunane, Colors.Red, "Seisa! 🛑");
+        LisaTap(kollane, lblKollane, Colors.Yellow, "Valmista! 🟡");
         LisaTap(roheline, lblRoheline, Colors.LimeGreen, "Sõida! 🟢");
 
         VärskendaHallid();
@@ -97,10 +97,10 @@ public partial class ValgusfoorPage : ContentPage
     private void OnSisseClicked(object? sender, EventArgs e)
     {
         foorSees = true;
-        punane.Fill   = new SolidColorBrush(punaneVarv);
-        kollane.Fill  = new SolidColorBrush(kollaneVarv);
+        punane.Fill = new SolidColorBrush(punaneVarv);
+        kollane.Fill = new SolidColorBrush(kollaneVarv);
         roheline.Fill = new SolidColorBrush(rohelineVarv);
-        vsl.BackgroundColor   = taustaVarv;
+        vsl.BackgroundColor = taustaVarv;
         BackgroundColor = taustaVarv;
         statusLabel.TextColor = ooRezsiim ? Colors.White : Colors.Black;
         statusLabel.Text = "Vali valgus";
@@ -116,11 +116,11 @@ public partial class ValgusfoorPage : ContentPage
 
     private void VärskendaHallid()
     {
-        punane.Fill   = new SolidColorBrush(hallVarv);
-        kollane.Fill  = new SolidColorBrush(hallVarv);
+        punane.Fill = new SolidColorBrush(hallVarv);
+        kollane.Fill = new SolidColorBrush(hallVarv);
         roheline.Fill = new SolidColorBrush(hallVarv);
-        vsl.BackgroundColor   = taustaVarv;
-        BackgroundColor       = taustaVarv;
+        vsl.BackgroundColor = taustaVarv;
+        BackgroundColor = taustaVarv;
         if (ooRezsiim)
         {
             statusLabel.TextColor = Colors.White;
@@ -189,8 +189,7 @@ public partial class ValgusfoorPage : ContentPage
     {
         if (autoRezsiim)
         {
-            autoRezsiim = false;
-            btnAuto.Text = "⏱ Automaat";
+            StopAuto();
             return;
         }
 
@@ -198,6 +197,9 @@ public partial class ValgusfoorPage : ContentPage
 
         autoRezsiim = true;
         btnAuto.Text = "⏹ Peata";
+        autoCts?.Dispose();
+        autoCts = new CancellationTokenSource();
+        var token = autoCts.Token;
 
         var tsüklid = new[]
         {
@@ -220,14 +222,21 @@ public partial class ValgusfoorPage : ContentPage
 
             try
             {
-                await Task.Delay(viide);
+                await Task.Delay(viide, token);
             }
-            catch { break; }
+            catch (TaskCanceledException)
+            {
+                break;
+            }
 
             if (!autoRezsiim) break;
 
             i++;
         }
+
+        autoCts?.Dispose();
+        autoCts = null;
+        btnAuto.Text = "⏱ Automaat";
     }
 
 

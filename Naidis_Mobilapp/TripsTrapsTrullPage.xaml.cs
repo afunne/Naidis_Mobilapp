@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Extensions;
 using Microsoft.Maui.Controls;
 using System;
 using Microsoft.Maui.Graphics;
@@ -8,8 +9,8 @@ namespace Naidis_Mobilapp
 {
     public partial class TripsTrapsTrullPage : ContentPage
     {
-        TicTacToeLogic logic;
-        Button[,] cellButtons;
+        TicTacToeLogic logic = null!;
+        Button[,] cellButtons = null!;
         int size = 3;
         string playerXSymbol = "X";
         string playerOSymbol = "O";
@@ -77,8 +78,8 @@ namespace Naidis_Mobilapp
             Color color = logic.CurrentPlayer == "X" ? playerXColor : playerOColor;
             cellButtons[r, c].Text = symbol;
             cellButtons[r, c].TextColor = color;
-            await cellButtons[r, c].ScaleTo(1.2, 100);
-            await cellButtons[r, c].ScaleTo(1.0, 100);
+            await cellButtons[r, c].ScaleToAsync(1.2, 100);
+            await cellButtons[r, c].ScaleToAsync(1.0, 100);
             logic.MakeMove(r, c);
 
             if (logic.CheckWin())
@@ -156,15 +157,15 @@ namespace Naidis_Mobilapp
             NewGame();
         }
 
-        private void OnWhoStartsClicked(object sender, EventArgs e)
+        private async void OnWhoStartsClicked(object sender, EventArgs e)
         {
             logic.RandomizeFirstPlayer();
-            ShowAlert("Alustaja", $"Alustab: {logic.CurrentPlayer}");
+            await ShowAlert("Alustaja", $"Alustab: {logic.CurrentPlayer}");
         }
 
         private async void OnColorClicked(object sender, EventArgs e)
         {
-            string result = await DisplayActionSheet("Vali sümbol/värv", "Cancel", null, "X must", "X sinine", "O punane", "O roheline");
+            string result = await DisplayActionSheetAsync("Vali sümbol/värv", "Cancel", null, "X must", "X sinine", "O punane", "O roheline");
             switch (result)
             {
                 case "X must": playerXColor = Colors.Black; break;
@@ -174,16 +175,16 @@ namespace Naidis_Mobilapp
             }
         }
 
-        private void OnBotClicked(object sender, EventArgs e)
+        private async void OnBotClicked(object sender, EventArgs e)
         {
             playWithBot = true;
-            ShowAlert("Mäng botiga", "Bot on nüüd vastane!");
+            await ShowAlert("Mäng botiga", "Bot on nüüd vastane!");
             if (logic.CurrentPlayer == "O") BotMove();
         }
 
         private async void OnSizeClicked(object sender, EventArgs e)
         {
-            string result = await DisplayActionSheet("Välja suurus", "Cancel", null, "3x3", "4x4", "5x5");
+            string result = await DisplayActionSheetAsync("Välja suurus", "Cancel", null, "3x3", "4x4", "5x5");
             switch (result)
             {
                 case "3x3": size = 3; break;
@@ -268,7 +269,7 @@ namespace Naidis_Mobilapp
         }
 
         // Returns winning cells for animation
-        public (int, int)[] GetWinCells()
+        public (int, int)[]? GetWinCells()
         {
             for (int i = 0; i < BoardSize; i++)
             {
