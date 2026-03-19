@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.TripsTrapsTrullMenuPage"
+             Title="Trips Traps Trull Menu"
+             BackgroundColor="#FFFDF9">
+    <VerticalStackLayout Padding="30" Spacing="30" VerticalOptions="Center">
+        <Label Text="Trips Traps Trull" FontSize="36" FontAttributes="Bold" TextColor="#4A4A4A" HorizontalOptions="Center" />
+        <Button Text="Alusta mängu" FontSize="24" Clicked="OnStartGameClicked" HorizontalOptions="Center" />
+        <Button Text="Statistika / Reeglid" FontSize="18" Clicked="OnInfoClicked" HorizontalOptions="Center" />
+        <Button Text="Teema: Vaheta" FontSize="18" Clicked="OnThemeClicked" HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

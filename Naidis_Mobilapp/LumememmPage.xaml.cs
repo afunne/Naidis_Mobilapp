@@ -159,5 +159,4 @@ public partial class LumememmPage : ContentPage
             keha.BackgroundColor = Colors.White;
         }
     }
-
 }

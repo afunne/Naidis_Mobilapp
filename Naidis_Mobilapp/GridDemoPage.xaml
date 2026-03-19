@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.GridDemoPage"
+             Title="Grid Demo"
+             BackgroundColor="#FFFDF9">
+    <VerticalStackLayout Padding="20" Spacing="30" VerticalOptions="Center">
+        <Label Text="Grid Demo" FontSize="32" FontAttributes="Bold" TextColor="#4A4A4A" HorizontalOptions="Center" />
+
+        <Picker x:Name="imagePicker"
+                Title="Vali pilt"
+                SelectedIndexChanged="OnPickerSelectedIndexChanged"
+                HorizontalOptions="Center">
+            <Picker.Items>
+                <x:String>Pilt 1</x:String>
+                <x:String>Pilt 2</x:String>
+                <x:String>Pilt 3</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Frame BorderColor="#4A4A4A" CornerRadius="10" Padding="10" HasShadow="False"
+               WidthRequest="200" HeightRequest="200" HorizontalOptions="Center">
+            <Image x:Name="selectedImage" Source="dotnet_bot.png" Aspect="AspectFit" />
+        </Frame>
+
+        <Grid ColumnDefinitions="*,*" Padding="0" HorizontalOptions="Center">
+            <Switch x:Name="colorSwitch"
+                    Toggled="OnSwitchToggled"
+                    HorizontalOptions="Center" />
+            <Label Text="Muuda värvi" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

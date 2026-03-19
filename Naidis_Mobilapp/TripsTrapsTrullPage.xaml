@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.TripsTrapsTrullPage"
+             BackgroundColor="#FFFDF9"
+             Title="Trips Traps Trull">
+
+    <VerticalStackLayout Padding="20" Spacing="30" VerticalOptions="Center">
+
+        <Label Text="Trips Traps Trull" 
+               FontSize="36" 
+               FontAttributes="Bold"
+               TextColor="#4A4A4A"
+               HorizontalOptions="Center" />
+
+        <Frame BorderColor="#4A4A4A" CornerRadius="10" Padding="0" HasShadow="False" 
+               WidthRequest="300" HeightRequest="300" HorizontalOptions="Center">
+            <Grid x:Name="GameGrid" BackgroundColor="#4A4A4A" RowSpacing="4" ColumnSpacing="4" />
+        </Frame>
+
+        <Grid RowDefinitions="Auto, Auto, Auto" 
+              ColumnDefinitions="*, *" 
+              ColumnSpacing="15" 
+              RowSpacing="15"
+              Margin="0, 20, 0, 0">
+
+            <Button Text="Alusta mäng" Clicked="OnNewGameClicked" Grid.Row="0" Grid.Column="0" BackgroundColor="#EBEBEB" TextColor="#333" FontAttributes="Bold"/>
+            <Button Text="Kes on esimene?" Clicked="OnWhoStartsClicked" Grid.Row="0" Grid.Column="1" BackgroundColor="#EBEBEB" TextColor="#333" FontAttributes="Bold"/>
+
+            <Button Text="Vali sümbol/värv" Clicked="OnColorClicked" Grid.Row="1" Grid.Column="0" BackgroundColor="#EBEBEB" TextColor="#333" FontAttributes="Bold"/>
+            <Button Text="Mäng botiga" Clicked="OnBotClicked" Grid.Row="1" Grid.Column="1" BackgroundColor="#EBEBEB" TextColor="#333" FontAttributes="Bold"/>
+
+            <Button Text="Välja suurus" Clicked="OnSizeClicked" Grid.Row="2" Grid.Column="0" BackgroundColor="#EBEBEB" TextColor="#333" FontAttributes="Bold"/>
+            <Button Text="Reeglid / Info" Clicked="OnRulesClicked" Grid.Row="2" Grid.Column="1" BackgroundColor="#EBEBEB" TextColor="#333" FontAttributes="Bold"/>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>
