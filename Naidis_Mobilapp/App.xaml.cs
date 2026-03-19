@@ -11,7 +11,7 @@ namespace Naidis_Mobilapp
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            var menuPage = new TripsTrapsTrullMenuPage();
+            var menuPage = new StartPage();
             var navPage = new NavigationPage(menuPage)
             {
                 BarBackgroundColor = Colors.Blue,
