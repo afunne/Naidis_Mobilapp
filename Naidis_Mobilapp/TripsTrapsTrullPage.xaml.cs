@@ -74,7 +74,7 @@ namespace Naidis_Mobilapp
         async Task OnCellClickedAnimated(int r, int c)
         {
             if (logic.Board[r, c] != null) return;
-            string symbol = logic.CurrentPlayer == "X" ? playerXSymbol : playerOSymbol;
+            string symbol = logic.CurrentPlayer == "X" ? playerXSymbol : playerOSymbol; // ? checks : if-else
             Color color = logic.CurrentPlayer == "X" ? playerXColor : playerOColor;
             cellButtons[r, c].Text = symbol;
             cellButtons[r, c].TextColor = color;
@@ -129,7 +129,7 @@ namespace Naidis_Mobilapp
 
         void BotMove()
         {
-            // Simple bot: pick first empty cell
+            // Simple bot: pick first empty cell (please don't throw a show at me I coulnd't make a smart one :_<)
             for (int r = 0; r < size; r++)
                 for (int c = 0; c < size; c++)
                     if (logic.Board[r, c] == null)
@@ -250,7 +250,7 @@ namespace Naidis_Mobilapp
 
         public bool MakeMove(int r, int c)
         {
-            if (r < 0 || r >= BoardSize || c < 0 || c >= BoardSize || Board[r, c] != null)
+            if (r < 0 || r >= BoardSize || c < 0 || c >= BoardSize || Board[r, c] != null) // || is logical OR operator, checks if either condition is true
                 return false;
             Board[r, c] = CurrentPlayer;
             return true;
