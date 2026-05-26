@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.MinecraftPopupQuizPage"
+             Title="Minecrafti viktoriin"
+             BackgroundColor="#F4E6C8">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22" Spacing="18">
+            <Border Stroke="#3B2A1A"
+                    StrokeThickness="3"
+                    BackgroundColor="#7AA95C"
+                    Padding="18">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Minecrafti viktoriin"
+                           FontFamily="BobloxFont"
+                           FontSize="30"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Vasta küsimustele MAUI hüpikakendega, nagu väike Kahoot."
+                           FontSize="15"
+                           TextColor="#FFF8E7"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Stroke="#5E4328"
+                    StrokeThickness="2"
+                    BackgroundColor="#FFF8E7"
+                    Padding="16">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
+                    <Label x:Name="PlayerLabel"
+                           Text="Mängija: Steve"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#2F3B1F"
+                           HorizontalTextAlignment="Center" />
+                    <Label x:Name="ScoreLabel"
+                           Text="Skoor: 0 / 0"
+                           FontSize="18"
+                           TextColor="#5E4328"
+                           HorizontalTextAlignment="Center" />
+                    <ProgressBar x:Name="ScoreProgress"
+                                 Progress="0"
+                                 ProgressColor="#4F8F35"
+                                 BackgroundColor="#D9C7A6" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid RowDefinitions="Auto, Auto, Auto"
+                  ColumnDefinitions="*, *"
+                  ColumnSpacing="12"
+                  RowSpacing="12">
+                <Button Text="Mängija nimi"
+                        Clicked="OnPlayerNameClicked"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BackgroundColor="#3F6F2A"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="6" />
+
+                <Button Text="Mõistatus"
+                        Clicked="OnRiddleClicked"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="#6A4B2A"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="6" />
+
+                <Button Text="Alusta viktoriini"
+                        Clicked="OnStartQuizClicked"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        BackgroundColor="#4F8F35"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="6" />
+
+                <Button Text="Muuda teemat"
+                        Clicked="OnThemeClicked"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        BackgroundColor="#B9863D"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="6" />
+
+                <Button Text="Lõpeta ja tulemused"
+                        Clicked="OnStopAndShowResultsClicked"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        BackgroundColor="#8A2B2B"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="6" />
+
+                <Button Text="Edetabel"
+                        Clicked="OnLeaderboardClicked"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        BackgroundColor="#2A5C8A"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="6" />
+            </Grid>
+
+            <Border Stroke="#7B5A35"
+                    StrokeThickness="1"
+                    BackgroundColor="#E7D2A3"
+                    Padding="14">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <Label Text="See leht kasutab teadete ja jah/ei küsimuste jaoks DisplayAlerti, trükitud vastuste jaoks DisplayPrompti ning teemade ja lehevärvide valikuks DisplayActionSheeti."
+                       FontSize="14"
+                       TextColor="#3B2A1A"
+                       HorizontalTextAlignment="Center" />
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Naidis_Mobilapp.ViewModels"
+             x:Class="Naidis_Mobilapp.Views.MainPage"
+             Title="Mitmekeelne rakendus"
+             BackgroundColor="#F5F7FA">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30"
+                             Spacing="22"
+                             VerticalOptions="Center">
+            <Border Stroke="#D7DEE8"
+                    StrokeThickness="1"
+                    BackgroundColor="White"
+                    Padding="24">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="18">
+                    <Label Text="{Binding Greeting}"
+                           FontSize="32"
+                           FontAttributes="Bold"
+                           TextColor="#1D3557"
+                           HorizontalTextAlignment="Center" />
+
+                    <Label Text="{Binding ChangeLanguageLabel}"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           TextColor="#457B9D"
+                           HorizontalTextAlignment="Center" />
+
+                    <Grid ColumnDefinitions="*, *, *"
+                          ColumnSpacing="8">
+                        <Button Command="{Binding SetEnglishCommand}"
+                                Text="{Binding EnglishButton}"
+                                ImageSource="flag_en.svg"
+                                Grid.Column="0"
+                                BackgroundColor="#E8F1F8"
+                                TextColor="#1D3557"
+                                FontAttributes="Bold" />
+
+                        <Button Command="{Binding SetRussianCommand}"
+                                Text="{Binding RussianButton}"
+                                ImageSource="flag_ru.svg"
+                                Grid.Column="1"
+                                BackgroundColor="#E8F1F8"
+                                TextColor="#1D3557"
+                                FontAttributes="Bold" />
+
+                        <Button Command="{Binding SetEstonianCommand}"
+                                Text="{Binding EstonianButton}"
+                                ImageSource="flag_et.svg"
+                                Grid.Column="2"
+                                BackgroundColor="#E8F1F8"
+                                TextColor="#1D3557"
+                                FontAttributes="Bold" />
+                    </Grid>
+
+                    <Label Text="{Binding SavedLanguageText}"
+                           FontSize="14"
+                           TextColor="#68717A"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

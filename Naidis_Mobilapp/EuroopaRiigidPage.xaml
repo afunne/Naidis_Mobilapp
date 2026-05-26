@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.EuroopaRiigidPage"
+             Title="Euroopa riigid"
+             BackgroundColor="#F3F6FA">
+
+    <Grid Padding="14"
+          RowDefinitions="Auto, *"
+          RowSpacing="12">
+        <Border Stroke="#315A7D"
+                StrokeThickness="1"
+                BackgroundColor="White"
+                Padding="12">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="8" />
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="9">
+                <Label Text="Euroopa Riikide Rakendus"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="#1C3D5A"
+                       HorizontalTextAlignment="Center" />
+
+                <Grid ColumnDefinitions="*, *"
+                      ColumnSpacing="8"
+                      RowDefinitions="Auto, Auto">
+                    <Entry x:Name="NameEntry"
+                           Placeholder="Riigi nimi"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           ClearButtonVisibility="WhileEditing" />
+
+                    <Entry x:Name="CapitalEntry"
+                           Placeholder="Pealinn"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           ClearButtonVisibility="WhileEditing" />
+
+                    <Entry x:Name="PopulationEntry"
+                           Placeholder="Rahvaarv"
+                           Keyboard="Numeric"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           ClearButtonVisibility="WhileEditing" />
+
+                    <Entry x:Name="FlagEntry"
+                           Placeholder="Lipp, nt estonia_flag.svg"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           ClearButtonVisibility="WhileEditing" />
+                </Grid>
+
+                <Grid ColumnDefinitions="*, *"
+                      ColumnSpacing="8">
+                    <Button Text="Lisa"
+                            Clicked="OnAddClicked"
+                            Grid.Column="0"
+                            BackgroundColor="#4F8A5B"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="8" />
+
+                    <Button Text="Salvesta muudatused"
+                            Clicked="OnSaveChangesClicked"
+                            Grid.Column="1"
+                            BackgroundColor="#2E6F95"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="8" />
+                </Grid>
+
+                <Grid ColumnDefinitions="*, *"
+                      ColumnSpacing="8">
+                    <Button Text="Kustuta valitud"
+                            Clicked="OnDeleteClicked"
+                            Grid.Column="0"
+                            BackgroundColor="#B94A48"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="8" />
+
+                    <Button Text="Puhasta väljad"
+                            Clicked="OnClearClicked"
+                            Grid.Column="1"
+                            BackgroundColor="#6C757D"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="8" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+
+        <ListView x:Name="CountriesList"
+                  Grid.Row="1"
+                  HasUnevenRows="True"
+                  SelectionMode="Single"
+                  SeparatorColor="#D5DEE8"
+                  BackgroundColor="#F3F6FA"
+                  ItemTapped="OnCountryTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10"
+                              ColumnDefinitions="78, *"
+                              ColumnSpacing="12"
+                              BackgroundColor="White">
+                            <Image Source="{Binding Lipp}"
+                                   WidthRequest="64"
+                                   HeightRequest="42"
+                                   Aspect="AspectFit"
+                                   VerticalOptions="Center"
+                                   BackgroundColor="#EDF2F7" />
+
+                            <VerticalStackLayout Grid.Column="1"
+                                                 VerticalOptions="Center"
+                                                 Spacing="3">
+                                <Label Text="{Binding Nimi}"
+                                       FontSize="19"
+                                       FontAttributes="Bold"
+                                       TextColor="#17324D"
+                                       LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding Pealinn, StringFormat='Pealinn: {0}'}"
+                                       FontSize="14"
+                                       TextColor="#5A6774"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

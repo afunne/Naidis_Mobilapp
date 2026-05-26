@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.ListViewTelefonidPage"
+             Title="Telefonide haldus"
+             BackgroundColor="#F4F7FB">
+
+    <Grid RowDefinitions="Auto, *"
+          Padding="14"
+          RowSpacing="12">
+        <Border Stroke="#2E5266"
+                StrokeThickness="1"
+                BackgroundColor="White"
+                Padding="12">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="8" />
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Dünaamiline ListView"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="#23395B"
+                       HorizontalTextAlignment="Center" />
+
+                <Entry x:Name="EntryNimetus"
+                       Placeholder="Telefoni mudel"
+                       ClearButtonVisibility="WhileEditing" />
+
+                <Entry x:Name="EntryTootja"
+                       Placeholder="Tootja"
+                       ClearButtonVisibility="WhileEditing" />
+
+                <Entry x:Name="EntryHind"
+                       Placeholder="Hind"
+                       Keyboard="Numeric"
+                       ClearButtonVisibility="WhileEditing" />
+
+                <Button Text="Vali pilt galeriist"
+                        Clicked="OnChooseImageClicked"
+                        BackgroundColor="#A8DADC"
+                        TextColor="#1D3557"
+                        FontAttributes="Bold"
+                        CornerRadius="8" />
+
+                <Label x:Name="SelectedImageLabel"
+                       Text="Pilti pole valitud (kasutatakse vaikimisi pilti)"
+                       FontSize="12"
+                       TextColor="#6C757D"
+                       HorizontalTextAlignment="Center" />
+
+                <Grid ColumnDefinitions="*, *"
+                      ColumnSpacing="10">
+                    <Button Text="Lisa telefon"
+                            Clicked="OnAddClicked"
+                            Grid.Column="0"
+                            BackgroundColor="#5FA777"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="8" />
+
+                    <Button Text="Kustuta valitud"
+                            Clicked="OnDeleteClicked"
+                            Grid.Column="1"
+                            BackgroundColor="#C8553D"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="8" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+
+        <ListView x:Name="PhonesList"
+                  Grid.Row="1"
+                  HasUnevenRows="True"
+                  SelectionMode="Single"
+                  SeparatorColor="#D6DEE8"
+                  BackgroundColor="#F4F7FB"
+                  ItemTapped="OnPhoneTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10"
+                              ColumnDefinitions="72, *"
+                              ColumnSpacing="12"
+                              BackgroundColor="White">
+                            <Image Source="{Binding Pilt}"
+                                   HeightRequest="60"
+                                   WidthRequest="60"
+                                   Aspect="AspectFit"
+                                   VerticalOptions="Center"
+                                   BackgroundColor="#EEF3F8" />
+
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="3"
+                                                 VerticalOptions="Center">
+                                <Label Text="{Binding Nimetus}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#1D3557"
+                                       LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding Tootja}"
+                                       FontSize="14"
+                                       TextColor="#68717A" />
+                                <Label Text="{Binding Hind, StringFormat='{0} EUR'}"
+                                       FontSize="15"
+                                       FontAttributes="Bold"
+                                       TextColor="#2E7D32" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

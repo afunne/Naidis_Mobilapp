@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
+using Naidis_Mobilapp.Services;
+
 namespace Naidis_Mobilapp
 {
     public partial class App : Application
@@ -7,6 +9,7 @@ namespace Naidis_Mobilapp
         public App()
         {
             InitializeComponent();
+            LanguageService.ApplySavedLanguage();
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

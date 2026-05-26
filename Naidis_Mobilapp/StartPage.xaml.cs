@@ -6,8 +6,8 @@ public partial class StartPage : ContentPage
 {
 	VerticalStackLayout vst;
 	ScrollView sv;
-	public List<ContentPage> Lehed = new List<ContentPage>() { new TextPage(), new FigurePage(), new Timer_Page(), new StepperSliderPage(), new TextDemoPage(), new DateTimePage(), new ValgusfoorPage(), new LumememmPage(), new GridDemoPage(), new TripsTrapsTrullPage() };
-	public List<string> LeheNimed = new List<string>() { "Tekst", "Kujud", "Taimer", "RGB Liugurid", "Teksti Demo", "Kuupäev ja Aeg", "Valgusfoor", "Lumememm", "Grid Demo", "Trips-Traps-Trull" };
+	public List<ContentPage> Lehed = new List<ContentPage>() { new TextPage(), new FigurePage(), new Timer_Page(), new StepperSliderPage(), new TextDemoPage(), new DateTimePage(), new ValgusfoorPage(), new LumememmPage(), new GridDemoPage(), new TripsTrapsTrullPage(), new MinecraftPopupQuizPage(), new SopradeKontaktidPage(), new ListViewTelefonidPage(), new EuroopaRiigidPage(), new KarussellPage(), new Views.MainPage() };
+	public List<string> LeheNimed = new List<string>() { "Tekst", "Kujud", "Taimer", "RGB Liugurid", "Teksti Demo", "Kuupäev ja Aeg", "Valgusfoor", "Lumememm", "Grid Demo", "Trips-Traps-Trull", "Minecraft PopUp Quiz", "Sõprade kontaktandmed", "Telefonide ListView", "Euroopa riigid", "Karussell", "Mitmekeelne rakendus" };
 	public StartPage()
 	{
 		Title = "Avaleht";

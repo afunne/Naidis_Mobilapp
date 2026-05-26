@@ -36,5 +36,9 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Rakendus kasutab kaamerat sõbra foto lisamiseks.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Rakendus kasutab fotokogu sõbra foto valimiseks.</string>
 </dict>
 </plist>

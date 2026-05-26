@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.SopradeKontaktidPage"
+             Title="Sõprade kontaktandmed"
+             BackgroundColor="#F5F1EA">
+
+    <TableView Intent="Form"
+               HasUnevenRows="True"
+               BackgroundColor="#F5F1EA">
+        <TableRoot>
+            <TableSection Title="Sõbra kontaktivorm">
+                <EntryCell x:Name="NameCell"
+                           Label="Nimi"
+                           Placeholder="Sõbra nimi" />
+                <EntryCell x:Name="EmailCell"
+                           Label="Email"
+                           Placeholder="nimi@example.com"
+                           Keyboard="Email" />
+                <EntryCell x:Name="PhoneCell"
+                           Label="Telefon"
+                           Placeholder="+372 5555 5555"
+                           Keyboard="Telephone" />
+                <ViewCell>
+                    <VerticalStackLayout Padding="15,10" Spacing="8">
+                        <Label Text="Kirjeldus"
+                               FontAttributes="Bold"
+                               TextColor="#4A3A28" />
+                        <Editor x:Name="DescriptionEditor"
+                                Placeholder="Kirjuta lühike kirjeldus"
+                                AutoSize="TextChanges"
+                                HeightRequest="90" />
+                    </VerticalStackLayout>
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="Foto">
+                <ViewCell>
+                    <VerticalStackLayout Padding="15" Spacing="12">
+                        <Image x:Name="FriendImage"
+                               Source="dotnet_bot.png"
+                               HeightRequest="170"
+                               Aspect="AspectFit"
+                               BackgroundColor="#E2D4C3" />
+                        <HorizontalStackLayout Spacing="10"
+                                               HorizontalOptions="Center">
+                            <Button Text="TEE FOTO"
+                                    Clicked="OnTakePhotoClicked"
+                                    BackgroundColor="#386641"
+                                    TextColor="White" />
+                            <Button Text="VALI FOTO"
+                                    Clicked="OnPickPhotoClicked"
+                                    BackgroundColor="#6A994E"
+                                    TextColor="White" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="Sõnum">
+                <ViewCell>
+                    <VerticalStackLayout Padding="15,10" Spacing="8">
+                        <Label Text="Saadetav sõnum"
+                               FontAttributes="Bold"
+                               TextColor="#4A3A28" />
+                        <Editor x:Name="MessageEditor"
+                                Placeholder="Kirjuta SMS-i või e-kirja tekst"
+                                AutoSize="TextChanges"
+                                HeightRequest="100" />
+                    </VerticalStackLayout>
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="Lisavõimalused">
+                <ViewCell>
+                    <Grid Padding="10"
+                          ColumnDefinitions="*, *, *"
+                          ColumnSpacing="8">
+                        <Button Text="HELISTA"
+                                Clicked="OnCallClicked"
+                                Grid.Column="0"
+                                BackgroundColor="#31572C"
+                                TextColor="White"
+                                FontSize="12" />
+                        <Button Text="SAADA SMS"
+                                Clicked="OnSmsClicked"
+                                Grid.Column="1"
+                                BackgroundColor="#4F772D"
+                                TextColor="White"
+                                FontSize="12" />
+                        <Button Text="SAADA EMAIL"
+                                Clicked="OnEmailClicked"
+                                Grid.Column="2"
+                                BackgroundColor="#90A955"
+                                TextColor="White"
+                                FontSize="12" />
+                    </Grid>
+                </ViewCell>
+                <ViewCell>
+                    <Grid Padding="10"
+                          ColumnDefinitions="*, *, *"
+                          ColumnSpacing="8">
+                        <Button Text="SALVESTA"
+                                Clicked="OnSaveFriendClicked"
+                                Grid.Column="0"
+                                BackgroundColor="#BC6C25"
+                                TextColor="White"
+                                FontSize="12" />
+                        <Button Text="JÄRGMINE"
+                                Clicked="OnNextFriendClicked"
+                                Grid.Column="1"
+                                BackgroundColor="#DDA15E"
+                                TextColor="White"
+                                FontSize="12" />
+                        <Button Text="ÕNNITLUSED"
+                                Clicked="OnGreetingClicked"
+                                Grid.Column="2"
+                                BackgroundColor="#606C38"
+                                TextColor="White"
+                                FontSize="12" />
+                    </Grid>
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="Kontaktiraamat">
+                <TextCell x:Name="SavedFriendsCell"
+                          Text="Salvestatud sõpru: 0"
+                          Detail="Täida vorm ja vajuta SALVESTA." />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>
