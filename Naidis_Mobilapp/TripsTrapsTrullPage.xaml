@@ -18,7 +18,7 @@
             <Grid x:Name="GameGrid" BackgroundColor="#4A4A4A" RowSpacing="4" ColumnSpacing="4" />
         </Frame>
 
-        <Grid RowDefinitions="Auto, Auto, Auto" 
+          <Grid RowDefinitions="Auto, Auto, Auto, Auto" 
               ColumnDefinitions="*, *" 
               ColumnSpacing="15" 
               RowSpacing="15"
@@ -32,6 +32,8 @@
 
             <Button Text="Välja suurus" Clicked="OnSizeClicked" Grid.Row="2" Grid.Column="0" BackgroundColor="#EBEBEB" TextColor="#333" FontAttributes="Bold"/>
             <Button Text="Reeglid / Info" Clicked="OnRulesClicked" Grid.Row="2" Grid.Column="1" BackgroundColor="#EBEBEB" TextColor="#333" FontAttributes="Bold"/>
+
+            <Button Text="Teema: Vaheta" Clicked="OnThemeClicked" Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="#EBEBEB" TextColor="#333" FontAttributes="Bold" HorizontalOptions="Center"/>
         </Grid>
 
     </VerticalStackLayout>

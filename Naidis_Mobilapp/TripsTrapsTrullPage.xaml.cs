@@ -202,6 +202,11 @@ namespace Naidis_Mobilapp
             await ShowAlert("Reeglid / Info", $"Trips-Traps-Trull: Mängi X ja O-ga, võidab, kui saad järjest.\n\nStatistika:\n{stats}\n\nTeema: {theme}");
         }
 
+        private void OnThemeClicked(object sender, EventArgs e)
+        {
+            ToggleTheme();
+        }
+
         // Theme toggle
         public void ToggleTheme()
         {
