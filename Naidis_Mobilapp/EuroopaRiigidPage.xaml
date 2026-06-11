@@ -45,12 +45,37 @@
                            Grid.Column="0"
                            ClearButtonVisibility="WhileEditing" />
 
-                    <Entry x:Name="FlagEntry"
-                           Placeholder="Lipp, nt estonia_flag.svg"
-                           Grid.Row="1"
-                           Grid.Column="1"
-                           ClearButtonVisibility="WhileEditing" />
+                          <Entry x:Name="FlagEntry"
+                              Placeholder="Lipp, nt estonia_flag.svg või faili tee"
+                              Grid.Row="1"
+                              Grid.Column="1"
+                              ClearButtonVisibility="WhileEditing" />
                 </Grid>
+
+                      <Button Text="Vali lipupilt"
+                           Clicked="OnChooseFlagClicked"
+                           BackgroundColor="#8A6A3D"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           CornerRadius="8" />
+
+                      <Grid ColumnDefinitions="84, *"
+                         ColumnSpacing="10"
+                         Padding="0, 2">
+                          <Image x:Name="FlagPreview"
+                              Source="europe_flag.svg"
+                              WidthRequest="72"
+                              HeightRequest="48"
+                              Aspect="AspectFit"
+                              BackgroundColor="#EDF2F7" />
+
+                          <Label x:Name="SelectedFlagLabel"
+                              Grid.Column="1"
+                              Text="Pildi valimiseks kasuta nuppu või kirjuta faili nimi."
+                              TextColor="#5A6774"
+                              VerticalTextAlignment="Center"
+                              LineBreakMode="WordWrap" />
+                      </Grid>
 
                 <Grid ColumnDefinitions="*, *"
                       ColumnSpacing="8">

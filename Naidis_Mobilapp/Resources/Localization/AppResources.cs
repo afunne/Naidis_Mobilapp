@@ -19,7 +19,9 @@ public static class AppResources
     public static string EstonianButton => GetString(nameof(EstonianButton));
     public static string SavedLanguageText => GetString(nameof(SavedLanguageText));
 
-    static string GetString(string name)
+    public static string Get(string name) => GetString(name);
+
+    public static string GetString(string name)
     {
         return ResourceManager.GetString(name, Culture) ?? name;
     }

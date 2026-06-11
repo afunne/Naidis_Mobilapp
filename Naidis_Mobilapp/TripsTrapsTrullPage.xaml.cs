@@ -41,7 +41,7 @@ namespace Naidis_Mobilapp
             logic = new TicTacToeLogic(boardSize);
             cellButtons = new Button[boardSize, boardSize];
             GameGrid.RowDefinitions.Clear();
-            GameGrid.ColumnDefinitions.Clear();
+            GameGrid.ColumnDefinitions.Clear(); ;
             GameGrid.Children.Clear();
             BackgroundColor = isDarkTheme ? darkBg : lightBg;
 
@@ -111,7 +111,7 @@ namespace Naidis_Mobilapp
 
         async Task AnimateWinLine()
         {
-            // Simple animation: flash winning cells
+            // Simple animation: flash winning celll, yeah...
             var winCells = logic.GetWinCells();
             if (winCells == null) return;
             for (int i = 0; i < 3; i++)
@@ -129,7 +129,7 @@ namespace Naidis_Mobilapp
 
         void BotMove()
         {
-            // Simple bot: pick first empty cell (please don't throw a show at me I coulnd't make a smart one :_<)
+            // please don't throw a show at me I coulnd't make a smart one :_<
             for (int r = 0; r < size; r++)
                 for (int c = 0; c < size; c++)
                     if (logic.Board[r, c] == null)

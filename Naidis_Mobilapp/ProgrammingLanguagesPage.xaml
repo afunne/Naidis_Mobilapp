@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
+             x:Class="Naidis_Mobilapp.ProgrammingLanguagesPage"
+             Title="Programming Languages">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Color="#10233E"
+                          Offset="0" />
+            <GradientStop Color="#1D3557"
+                          Offset="0.55" />
+            <GradientStop Color="#F4B942"
+                          Offset="1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                             Spacing="16">
+            <Border Padding="18"
+                    BackgroundColor="#0F1B2D"
+                    StrokeThickness="0">
+                <Border.StrokeShape>
+                    <shapes:RoundRectangle CornerRadius="24" />
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="Black"
+                            Opacity="0.28"
+                            Radius="16"
+                            Offset="0,10" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label x:Name="HeaderTitleLabel"
+                           HorizontalTextAlignment="Center"
+                           TextColor="White"
+                           FontSize="28"
+                           FontAttributes="Bold" />
+
+                    <Label x:Name="HeaderSubtitleLabel"
+                           HorizontalTextAlignment="Center"
+                           TextColor="White"
+                           FontSize="14"
+                           LineBreakMode="WordWrap" />
+
+                    <Label x:Name="LanguageLabel"
+                           HorizontalTextAlignment="Center"
+                           TextColor="#D8E3F0"
+                           FontSize="13"
+                           FontAttributes="Bold" />
+
+                        <Grid ColumnDefinitions="*, *"
+                          ColumnSpacing="10">
+                        <Button x:Name="EnglishLanguageButton"
+                                Grid.Column="0"
+                                Clicked="OnEnglishClicked"
+                                BackgroundColor="#2F3C52"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                CornerRadius="14"
+                                HeightRequest="46"
+                            Padding="14,10"
+                            ImageSource="flag_en.svg" />
+
+                        <Button x:Name="EstonianLanguageButton"
+                                Grid.Column="1"
+                                Clicked="OnEstonianClicked"
+                                BackgroundColor="#2F3C52"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                CornerRadius="14"
+                                HeightRequest="46"
+                            Padding="14,10"
+                            ImageSource="flag_et.svg" />
+                    </Grid>
+
+                    <Label x:Name="CurrentLanguageLabel"
+                           HorizontalTextAlignment="Center"
+                           TextColor="#F4F7FB"
+                           FontSize="12" />
+                </VerticalStackLayout>
+            </Border>
+
+            <CarouselView x:Name="LanguageCarousel"
+                          HeightRequest="390"
+                          Loop="True"
+                          PositionChanged="OnPositionChanged">
+                <CarouselView.PeekAreaInsets>
+                    <Thickness Left="28"
+                               Top="0"
+                               Right="28"
+                               Bottom="0" />
+                </CarouselView.PeekAreaInsets>
+
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="6,8"
+                                Padding="0"
+                                BackgroundColor="White"
+                                StrokeThickness="0">
+                            <Border.StrokeShape>
+                                <shapes:RoundRectangle CornerRadius="24" />
+                            </Border.StrokeShape>
+                            <Border.Shadow>
+                                <Shadow Brush="Black"
+                                        Opacity="0.2"
+                                        Radius="14"
+                                        Offset="0,8" />
+                            </Border.Shadow>
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCardTapped" />
+                            </Border.GestureRecognizers>
+
+                            <Grid RowDefinitions="6, Auto, Auto">
+                                <BoxView Grid.Row="0"
+                                         HeightRequest="6"
+                                         Color="{Binding AccentColor}" />
+
+                                <Border Grid.Row="1"
+                                        Margin="16,16,16,0"
+                                        Padding="20"
+                                        BackgroundColor="#F6F8FC"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <shapes:RoundRectangle CornerRadius="18" />
+                                    </Border.StrokeShape>
+
+                                     <Image Source="{Binding ImageName}"
+                                           HeightRequest="180"
+                                           Aspect="AspectFit"
+                                           HorizontalOptions="Center" />
+                                </Border>
+
+                                <VerticalStackLayout Grid.Row="2"
+                                                     Margin="18,12,18,18"
+                                                     Spacing="6">
+                                    <Label Text="{Binding Title}"
+                                           FontSize="22"
+                                           FontAttributes="Bold"
+                                           TextColor="#10233E" />
+
+                                    <Label Text="{Binding Description}"
+                                           FontSize="14"
+                                           TextColor="#5A6774"
+                                           LineBreakMode="WordWrap" />
+
+                                    <Label Text="{Binding TapHint}"
+                                           FontSize="12"
+                                           FontAttributes="Bold"
+                                           TextColor="#2F8F9D" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <IndicatorView x:Name="CarouselIndicators"
+                           HorizontalOptions="Center"
+                           Margin="0,4"
+                           IndicatorColor="LightGray"
+                           SelectedIndicatorColor="#F9D923" />
+
+            <Label x:Name="CounterLabel"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                   FontSize="14"
+                   FontAttributes="Bold" />
+
+            <Grid ColumnDefinitions="*, *"
+                  ColumnSpacing="10">
+                <Button x:Name="AnimateButton"
+                        Grid.Column="0"
+                        Clicked="OnAnimateClicked"
+                        BackgroundColor="#F9D923"
+                        TextColor="#10233E"
+                        FontAttributes="Bold"
+                        CornerRadius="14"
+                        HeightRequest="46"
+                        Padding="14,10" />
+
+                <Button x:Name="RestartButton"
+                        Grid.Column="1"
+                        Clicked="OnRestartClicked"
+                        BackgroundColor="#2F8F9D"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="14"
+                        HeightRequest="46"
+                        Padding="14,10" />
+            </Grid>
+
+            <Label x:Name="InstructionsLabel"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#F4F7FB"
+                   FontSize="13"
+                   LineBreakMode="WordWrap" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -30,4 +30,100 @@
   <data name="SavedLanguageText" xml:space="preserve">
     <value>The selected language is saved and restored when the app starts.</value>
   </data>
+  <data name="KarussellPageTitle" xml:space="preserve">
+    <value>Programming Languages Portfolio</value>
+  </data>
+  <data name="KarussellPageSubtitle" xml:space="preserve">
+    <value>Swipe through five languages and tap any card for a Hello World example.</value>
+  </data>
+  <data name="LanguageSelectorLabel" xml:space="preserve">
+    <value>Language selector</value>
+  </data>
+  <data name="CurrentLanguageLabel" xml:space="preserve">
+    <value>Current language: {0}</value>
+  </data>
+  <data name="CurrentLanguageEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="CurrentLanguageEstonian" xml:space="preserve">
+    <value>Estonian</value>
+  </data>
+  <data name="AnimateButtonText" xml:space="preserve">
+    <value>Animate cards</value>
+  </data>
+  <data name="RestartButtonText" xml:space="preserve">
+    <value>Back to first card</value>
+  </data>
+  <data name="InstructionText" xml:space="preserve">
+    <value>The carousel moves automatically every 4 seconds.</value>
+  </data>
+  <data name="TapHintText" xml:space="preserve">
+    <value>Tap for a Hello World example</value>
+  </data>
+  <data name="CardCounterFormat" xml:space="preserve">
+    <value>Card {0} of {1}</value>
+  </data>
+  <data name="OkButtonText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="CSharpTitle" xml:space="preserve">
+    <value>C#</value>
+  </data>
+  <data name="CSharpDescription" xml:space="preserve">
+    <value>Powerful object-oriented language for apps, games, and APIs.</value>
+  </data>
+  <data name="CSharpAlertTitle" xml:space="preserve">
+    <value>C# Hello World</value>
+  </data>
+  <data name="CSharpAlertMessage" xml:space="preserve">
+    <value>Hello World example:\nConsole.WriteLine(&quot;Hello, World!&quot;);\nCreated in 2000.</value>
+  </data>
+  <data name="PythonTitle" xml:space="preserve">
+    <value>Python</value>
+  </data>
+  <data name="PythonDescription" xml:space="preserve">
+    <value>Great for data, automation, and quick prototyping.</value>
+  </data>
+  <data name="PythonAlertTitle" xml:space="preserve">
+    <value>Python Hello World</value>
+  </data>
+  <data name="PythonAlertMessage" xml:space="preserve">
+    <value>Hello World example:\nprint(&quot;Hello, World!&quot;)\nCreated in 1991.</value>
+  </data>
+  <data name="JavaScriptTitle" xml:space="preserve">
+    <value>JavaScript</value>
+  </data>
+  <data name="JavaScriptDescription" xml:space="preserve">
+    <value>The language of the web for interactive interfaces.</value>
+  </data>
+  <data name="JavaScriptAlertTitle" xml:space="preserve">
+    <value>JavaScript Hello World</value>
+  </data>
+  <data name="JavaScriptAlertMessage" xml:space="preserve">
+    <value>Hello World example:\nconsole.log(&quot;Hello, World!&quot;);\nCreated in 1995.</value>
+  </data>
+  <data name="JavaTitle" xml:space="preserve">
+    <value>Java</value>
+  </data>
+  <data name="JavaDescription" xml:space="preserve">
+    <value>Reliable cross-platform language for enterprise systems.</value>
+  </data>
+  <data name="JavaAlertTitle" xml:space="preserve">
+    <value>Java Hello World</value>
+  </data>
+  <data name="JavaAlertMessage" xml:space="preserve">
+    <value>Hello World example:\nSystem.out.println(&quot;Hello, World!&quot;);\nCreated in 1995.</value>
+  </data>
+  <data name="CppTitle" xml:space="preserve">
+    <value>C++</value>
+  </data>
+  <data name="CppDescription" xml:space="preserve">
+    <value>High-performance language for engines and system software.</value>
+  </data>
+  <data name="CppAlertTitle" xml:space="preserve">
+    <value>C++ Hello World</value>
+  </data>
+  <data name="CppAlertMessage" xml:space="preserve">
+    <value>Hello World example:\nstd::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl;\nCreated in 1983.</value>
+  </data>
 </root>

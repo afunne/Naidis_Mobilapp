@@ -21,6 +21,47 @@ public partial class EuroopaRiigidPage : ContentPage
         CountriesList.ItemsSource = riigid;
     }
 
+    async void OnChooseFlagClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            FileResult? photo = await FilePicker.Default.PickAsync(new PickOptions
+            {
+                PickerTitle = "Vali lipupilt",
+                FileTypes = FilePickerFileType.Images
+            });
+
+            if (photo == null)
+            {
+                return;
+            }
+
+            string extension = Path.GetExtension(photo.FileName);
+
+            if (string.IsNullOrWhiteSpace(extension))
+            {
+                extension = ".png";
+            }
+
+            string localPath = Path.Combine(
+                FileSystem.CacheDirectory,
+                $"flag_{Guid.NewGuid():N}{extension}");
+
+            await using Stream sourceStream = await photo.OpenReadAsync();
+            await using FileStream localFileStream = File.Create(localPath);
+            await sourceStream.CopyToAsync(localFileStream);
+
+            FlagEntry.Text = localPath;
+            FlagPreview.Source = ImageSource.FromFile(localPath);
+            SelectedFlagLabel.Text = $"Valitud pilt: {photo.FileName}";
+            SelectedFlagLabel.TextColor = Colors.Green;
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync("Viga", "Lipupildi valimine ebaõnnestus: " + ex.Message, "OK");
+        }
+    }
+
     async void OnCountryTapped(object sender, ItemTappedEventArgs e)
     {
         if (e.Item is not Riik riik)
@@ -155,6 +196,9 @@ public partial class EuroopaRiigidPage : ContentPage
         CapitalEntry.Text = riik.Pealinn;
         PopulationEntry.Text = riik.Rahvaarv.ToString();
         FlagEntry.Text = riik.Lipp;
+        FlagPreview.Source = ImageSource.FromFile(riik.Lipp);
+        SelectedFlagLabel.Text = $"Praegune lipp: {GetFlagDisplayName(riik.Lipp)}";
+        SelectedFlagLabel.TextColor = Colors.Gray;
     }
 
     void ClearForm()
@@ -165,6 +209,19 @@ public partial class EuroopaRiigidPage : ContentPage
         CapitalEntry.Text = "";
         PopulationEntry.Text = "";
         FlagEntry.Text = "";
+        FlagPreview.Source = "europe_flag.svg";
+        SelectedFlagLabel.Text = "Pildi valimiseks kasuta nuppu või kirjuta faili nimi.";
+        SelectedFlagLabel.TextColor = Colors.Gray;
+    }
+
+    static string GetFlagDisplayName(string flagSource)
+    {
+        if (Path.IsPathRooted(flagSource))
+        {
+            return Path.GetFileName(flagSource);
+        }
+
+        return flagSource;
     }
 }
 

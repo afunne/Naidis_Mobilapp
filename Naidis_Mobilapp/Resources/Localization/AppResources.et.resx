@@ -30,4 +30,100 @@
   <data name="SavedLanguageText" xml:space="preserve">
     <value>Valitud keel salvestatakse ja taastatakse rakenduse käivitamisel.</value>
   </data>
+  <data name="KarussellPageTitle" xml:space="preserve">
+    <value>Programmeerimiskeelte portfell</value>
+  </data>
+  <data name="KarussellPageSubtitle" xml:space="preserve">
+    <value>Libista läbi viie keele ja puuduta kaarti, et näha Hello World näidet.</value>
+  </data>
+  <data name="LanguageSelectorLabel" xml:space="preserve">
+    <value>Keele valik</value>
+  </data>
+  <data name="CurrentLanguageLabel" xml:space="preserve">
+    <value>Praegune keel: {0}</value>
+  </data>
+  <data name="CurrentLanguageEnglish" xml:space="preserve">
+    <value>Inglise</value>
+  </data>
+  <data name="CurrentLanguageEstonian" xml:space="preserve">
+    <value>Eesti</value>
+  </data>
+  <data name="AnimateButtonText" xml:space="preserve">
+    <value>Animeeri kaarte</value>
+  </data>
+  <data name="RestartButtonText" xml:space="preserve">
+    <value>Esimese kaardi juurde</value>
+  </data>
+  <data name="InstructionText" xml:space="preserve">
+    <value>Karussell liigub automaatselt iga 4 sekundi järel.</value>
+  </data>
+  <data name="TapHintText" xml:space="preserve">
+    <value>Puuduta Hello World näite vaatamiseks</value>
+  </data>
+  <data name="CardCounterFormat" xml:space="preserve">
+    <value>Kaart {0} / {1}</value>
+  </data>
+  <data name="OkButtonText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="CSharpTitle" xml:space="preserve">
+    <value>C#</value>
+  </data>
+  <data name="CSharpDescription" xml:space="preserve">
+    <value>Võimas objektorienteeritud keel rakenduste, mängude ja API-de jaoks.</value>
+  </data>
+  <data name="CSharpAlertTitle" xml:space="preserve">
+    <value>C# Hello World</value>
+  </data>
+  <data name="CSharpAlertMessage" xml:space="preserve">
+    <value>Hello World näide:\nConsole.WriteLine(&quot;Hello, World!&quot;);\nLoodi 2000. aastal.</value>
+  </data>
+  <data name="PythonTitle" xml:space="preserve">
+    <value>Python</value>
+  </data>
+  <data name="PythonDescription" xml:space="preserve">
+    <value>Suurepärane andmete, automaatika ja kiire prototüüpimise jaoks.</value>
+  </data>
+  <data name="PythonAlertTitle" xml:space="preserve">
+    <value>Pythoni Hello World</value>
+  </data>
+  <data name="PythonAlertMessage" xml:space="preserve">
+    <value>Hello World näide:\nprint(&quot;Hello, World!&quot;)\nLoodi 1991. aastal.</value>
+  </data>
+  <data name="JavaScriptTitle" xml:space="preserve">
+    <value>JavaScript</value>
+  </data>
+  <data name="JavaScriptDescription" xml:space="preserve">
+    <value>Veebi keel interaktiivsete kasutajaliideste jaoks.</value>
+  </data>
+  <data name="JavaScriptAlertTitle" xml:space="preserve">
+    <value>JavaScripti Hello World</value>
+  </data>
+  <data name="JavaScriptAlertMessage" xml:space="preserve">
+    <value>Hello World näide:\nconsole.log(&quot;Hello, World!&quot;);\nLoodi 1995. aastal.</value>
+  </data>
+  <data name="JavaTitle" xml:space="preserve">
+    <value>Java</value>
+  </data>
+  <data name="JavaDescription" xml:space="preserve">
+    <value>Usaldusväärne platvormideülene keel ärisüsteemidele.</value>
+  </data>
+  <data name="JavaAlertTitle" xml:space="preserve">
+    <value>Java Hello World</value>
+  </data>
+  <data name="JavaAlertMessage" xml:space="preserve">
+    <value>Hello World näide:\nSystem.out.println(&quot;Hello, World!&quot;);\nLoodi 1995. aastal.</value>
+  </data>
+  <data name="CppTitle" xml:space="preserve">
+    <value>C++</value>
+  </data>
+  <data name="CppDescription" xml:space="preserve">
+    <value>Suure jõudlusega keel mootoritele ja süsteemitarkvarale.</value>
+  </data>
+  <data name="CppAlertTitle" xml:space="preserve">
+    <value>C++ Hello World</value>
+  </data>
+  <data name="CppAlertMessage" xml:space="preserve">
+    <value>Hello World näide:\nstd::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl;\nLoodi 1983. aastal.</value>
+  </data>
 </root>
