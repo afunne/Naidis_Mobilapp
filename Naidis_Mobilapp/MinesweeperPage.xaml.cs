@@ -4,33 +4,48 @@ namespace Naidis_Mobilapp;
 
 public partial class MinesweeperPage : ContentPage
 {
-    private const int Rows = 8;
-    private const int Columns = 8;
-    private const int Mines = 10;
-    private const double CellSize = 35;
-
     private readonly List<Theme> _themes;
+    private readonly List<BoardSize> _boardSizes;
     private readonly IDispatcherTimer _timer;
-    private readonly Button[,] _cellButtons = new Button[Rows, Columns];
+    private Button[,] _cellButtons = new Button[0, 0];
     private Player _player;
     private Game _game;
+    private BoardSize _selectedBoardSize;
+    private (int Row, int Column)? _selectedCell;
+    private bool _isInitializing = true;
 
     public MinesweeperPage()
     {
         InitializeComponent();
 
         _themes = CreateThemes();
+        _boardSizes = CreateBoardSizes();
+        _selectedBoardSize = _boardSizes[1];
         _player = new Player(PlayerNameEntry.Text);
-        _game = new Game(Rows, Columns, Mines, _player);
+        _game = CreateGame(_selectedBoardSize);
         _timer = Dispatcher.CreateTimer();
         _timer.Interval = TimeSpan.FromSeconds(1);
         _timer.Tick += (_, _) => UpdateStats();
 
         ThemePicker.ItemsSource = _themes;
         ThemePicker.SelectedIndex = 0;
+        SizePicker.ItemsSource = _boardSizes;
+        SizePicker.SelectedItem = _selectedBoardSize;
 
+        _isInitializing = false;
         CreateBoard();
         StartGame();
+    }
+
+    private static List<BoardSize> CreateBoardSizes()
+    {
+        return new List<BoardSize>
+        {
+            new("Väike 6 x 6", 6, 6, 6),
+            new("Keskmine 8 x 8", 8, 8, 10),
+            new("Suur 10 x 10", 10, 10, 16),
+            new("Ekspert 12 x 12", 12, 12, 24)
+        };
     }
 
     private static List<Theme> CreateThemes()
@@ -38,33 +53,39 @@ public partial class MinesweeperPage : ContentPage
         return new List<Theme>
         {
             new(
-                "Garden",
+                "Aed",
                 Color.FromArgb("#F7F1E5"),
                 Color.FromArgb("#FFFDF8"),
                 Color.FromArgb("#263238"),
                 Color.FromArgb("#2E7D7A"),
                 Color.FromArgb("#6E9C89"),
+                Color.FromArgb("#79AD62"),
                 Color.FromArgb("#EFE7D3"),
+                Color.FromArgb("#E3D0AE"),
                 Color.FromArgb("#C44536"),
                 "OpenSansRegular"),
             new(
-                "Midnight",
+                "Kesköö",
                 Color.FromArgb("#171923"),
                 Color.FromArgb("#242938"),
                 Color.FromArgb("#F8FAFC"),
                 Color.FromArgb("#6EA8FE"),
                 Color.FromArgb("#394150"),
+                Color.FromArgb("#323947"),
                 Color.FromArgb("#2D3342"),
+                Color.FromArgb("#252B38"),
                 Color.FromArgb("#F97373"),
                 "OpenSansSemibold"),
             new(
-                "Candy",
+                "Kommid",
                 Color.FromArgb("#FFF0F5"),
                 Color.FromArgb("#FFFFFF"),
                 Color.FromArgb("#3B2645"),
                 Color.FromArgb("#D9468F"),
                 Color.FromArgb("#83C5BE"),
+                Color.FromArgb("#76B7B0"),
                 Color.FromArgb("#FFE8A3"),
+                Color.FromArgb("#F5D986"),
                 Color.FromArgb("#EF476F"),
                 "BobloxFont")
         };
@@ -72,40 +93,44 @@ public partial class MinesweeperPage : ContentPage
 
     private void CreateBoard()
     {
+        var cellSize = GetCellSize();
+
         BoardGrid.RowDefinitions.Clear();
         BoardGrid.ColumnDefinitions.Clear();
         BoardGrid.Children.Clear();
 
-        BoardGrid.WidthRequest = Columns * CellSize + (Columns - 1) * BoardGrid.ColumnSpacing;
+        _cellButtons = new Button[_game.Rows, _game.Columns];
+        BoardGrid.WidthRequest = _game.Columns * cellSize + (_game.Columns - 1) * BoardGrid.ColumnSpacing;
 
-        for (var row = 0; row < Rows; row++)
+        for (var row = 0; row < _game.Rows; row++)
         {
-            BoardGrid.RowDefinitions.Add(new RowDefinition { Height = CellSize });
+            BoardGrid.RowDefinitions.Add(new RowDefinition { Height = cellSize });
         }
 
-        for (var column = 0; column < Columns; column++)
+        for (var column = 0; column < _game.Columns; column++)
         {
-            BoardGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = CellSize });
+            BoardGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = cellSize });
         }
 
-        for (var row = 0; row < Rows; row++)
+        for (var row = 0; row < _game.Rows; row++)
         {
-            for (var column = 0; column < Columns; column++)
+            for (var column = 0; column < _game.Columns; column++)
             {
                 var button = new Button
                 {
                     Padding = 0,
-                    CornerRadius = 6,
+                    CornerRadius = 0,
+                    BorderWidth = 0,
                     FontAttributes = FontAttributes.Bold,
-                    FontSize = 16,
-                    HeightRequest = CellSize,
-                    WidthRequest = CellSize,
-                    MinimumHeightRequest = CellSize,
-                    MinimumWidthRequest = CellSize,
+                    FontSize = cellSize > 32 ? 16 : 14,
+                    HeightRequest = cellSize,
+                    WidthRequest = cellSize,
+                    MinimumHeightRequest = cellSize,
+                    MinimumWidthRequest = cellSize,
                     BindingContext = (Row: row, Column: column)
                 };
 
-                button.SetDynamicResource(Button.BackgroundColorProperty, "MinesHiddenCellColor");
+                ApplyCellBackground(button, row, column, false);
                 button.SetDynamicResource(Button.TextColorProperty, "MinesTextColor");
                 button.SetDynamicResource(Button.FontFamilyProperty, "MinesFontFamily");
                 button.Clicked += OnCellClicked;
@@ -119,22 +144,43 @@ public partial class MinesweeperPage : ContentPage
     private void StartGame()
     {
         _game.Start();
-        _timer.Start();
-        PauseButton.Text = "Pause";
-        FlagModeCheckBox.IsChecked = false;
+        _timer.Stop();
+        PauseButton.Text = "Paus";
+        PauseButton.IsEnabled = false;
+        HideCellActionPopup();
+        SelectedCellLabel.Text = string.Empty;
         BoardGrid.Rotation = 0;
+        BoardGrid.TranslationX = 0;
 
         foreach (var button in _cellButtons)
         {
             button.IsEnabled = true;
             button.Text = string.Empty;
+            button.ImageSource = null;
             button.Opacity = 1;
             button.Scale = 1;
-            button.SetDynamicResource(Button.BackgroundColorProperty, "MinesHiddenCellColor");
+            var position = ((int Row, int Column))button.BindingContext;
+            ApplyCellBackground(button, position.Row, position.Column, false);
             button.SetDynamicResource(Button.TextColorProperty, "MinesTextColor");
         }
 
         UpdateStats();
+    }
+
+    private Game CreateGame(BoardSize boardSize)
+    {
+        return new Game(boardSize.Rows, boardSize.Columns, boardSize.Mines, _player);
+    }
+
+    private double GetCellSize()
+    {
+        return _game.Columns switch
+        {
+            <= 6 => 42,
+            <= 8 => 35,
+            <= 10 => 31,
+            _ => 27
+        };
     }
 
     private async void OnCellClicked(object? sender, EventArgs e)
@@ -147,22 +193,39 @@ public partial class MinesweeperPage : ContentPage
         await button.ScaleToAsync(0.88, 45, Easing.CubicOut);
         await button.ScaleToAsync(1, 70, Easing.CubicIn);
 
-        if (FlagModeCheckBox.IsChecked)
-        {
-            if (_game.ToggleFlag(position.Item1, position.Item2))
-            {
-                DrawCell(_game.Board[position.Item1, position.Item2]);
-                UpdateStats();
-            }
+        var cell = _game.Board[position.Item1, position.Item2];
 
+        if (cell.IsOpen)
+        {
             return;
         }
 
-        var changedCells = _game.OpenCell(position.Item1, position.Item2);
+        _selectedCell = (position.Item1, position.Item2);
+        PopupOpenButton.IsEnabled = !cell.IsFlagged;
+        SelectedCellLabel.Text = $"Ruut: {position.Item1 + 1}, {position.Item2 + 1}";
+        await ShowCellActionPopup();
+    }
+
+    private async Task OpenSelectedCell()
+    {
+        if (_selectedCell is not { } position)
+        {
+            return;
+        }
+
+        await HideCellActionPopupAsync();
+
+        var changedCells = _game.OpenCell(position.Row, position.Column);
 
         foreach (var cell in changedCells)
         {
             DrawCell(cell);
+        }
+
+        if (_game.IsStarted && !_game.IsEnded)
+        {
+            _timer.Start();
+            PauseButton.IsEnabled = true;
         }
 
         UpdateStats();
@@ -170,6 +233,22 @@ public partial class MinesweeperPage : ContentPage
         if (_game.IsEnded)
         {
             await FinishGame();
+        }
+    }
+
+    private async Task ToggleSelectedFlag()
+    {
+        if (_selectedCell is not { } position)
+        {
+            return;
+        }
+
+        await HideCellActionPopupAsync();
+
+        if (_game.ToggleFlag(position.Row, position.Column))
+        {
+            DrawCell(_game.Board[position.Row, position.Column]);
+            UpdateStats();
         }
     }
 
@@ -190,9 +269,9 @@ public partial class MinesweeperPage : ContentPage
 
             await BoardGrid.RotateToAsync(360, 550, Easing.CubicInOut);
             await DisplayAlertAsync(
-                "Victory",
-                $"{_player.Name} won with {_game.Score} points in {FormatTime(_game.Elapsed)}.",
-                "Nice");
+                "Võit",
+                $"{_player.Name} võitis {_game.Score} punktiga ajaga {FormatTime(_game.Elapsed)}.",
+                "Hästi");
         }
         else
         {
@@ -205,9 +284,9 @@ public partial class MinesweeperPage : ContentPage
             await BoardGrid.TranslateToAsync(10, 0, 40);
             await BoardGrid.TranslateToAsync(0, 0, 40);
             await DisplayAlertAsync(
-                "Boom",
-                $"{_player.Name} scored {_game.Score} points. Try again!",
-                "Again");
+                "Pauk",
+                $"{_player.Name} kogus {_game.Score} punkti. Proovi uuesti!",
+                "Uuesti");
         }
 
         foreach (var button in _cellButtons)
@@ -224,8 +303,9 @@ public partial class MinesweeperPage : ContentPage
 
         if (cell.IsFlagged && !cell.IsOpen)
         {
-            button.Text = "!";
-            button.SetDynamicResource(Button.BackgroundColorProperty, "MinesAccentColor");
+            button.Text = string.Empty;
+            button.ImageSource = "mines_flag.svg";
+            ApplyCellBackground(button, cell.Row, cell.Column, false);
             button.TextColor = Colors.White;
             return;
         }
@@ -233,13 +313,22 @@ public partial class MinesweeperPage : ContentPage
         if (!cell.IsOpen)
         {
             button.Text = string.Empty;
-            button.SetDynamicResource(Button.BackgroundColorProperty, "MinesHiddenCellColor");
+            button.ImageSource = null;
+            ApplyCellBackground(button, cell.Row, cell.Column, false);
             button.SetDynamicResource(Button.TextColorProperty, "MinesTextColor");
             return;
         }
 
         button.IsEnabled = false;
-        button.SetDynamicResource(Button.BackgroundColorProperty, cell.IsMine ? "MinesDangerColor" : "MinesOpenCellColor");
+        button.ImageSource = null;
+        if (cell.IsMine)
+        {
+            button.SetDynamicResource(Button.BackgroundColorProperty, "MinesDangerColor");
+        }
+        else
+        {
+            ApplyCellBackground(button, cell.Row, cell.Column, true);
+        }
         button.TextColor = cell.IsMine ? Colors.White : GetNumberColor(cell.NearbyMines);
         button.Text = cell.IsMine
             ? "*"
@@ -259,11 +348,21 @@ public partial class MinesweeperPage : ContentPage
         };
     }
 
+    private static void ApplyCellBackground(Button button, int row, int column, bool isOpen)
+    {
+        var isAlternate = (row + column) % 2 == 1;
+        var resourceName = isOpen
+            ? isAlternate ? "MinesOpenCellAltColor" : "MinesOpenCellColor"
+            : isAlternate ? "MinesHiddenCellAltColor" : "MinesHiddenCellColor";
+
+        button.SetDynamicResource(Button.BackgroundColorProperty, resourceName);
+    }
+
     private void UpdateStats()
     {
-        ScoreLabel.Text = $"Score: {_game.Score}";
-        TimeLabel.Text = $"Time: {FormatTime(_game.Elapsed)}";
-        FlagsLabel.Text = $"Flags: {_game.RemainingFlags}";
+        ScoreLabel.Text = $"Punktid: {_game.Score}";
+        TimeLabel.Text = $"Aeg: {FormatTime(_game.Elapsed)}";
+        FlagsLabel.Text = $"Lipud: {_game.RemainingFlags}";
     }
 
     private static string FormatTime(TimeSpan elapsed)
@@ -278,18 +377,23 @@ public partial class MinesweeperPage : ContentPage
 
     private void OnPauseClicked(object sender, EventArgs e)
     {
+        if (!_game.IsStarted)
+        {
+            return;
+        }
+
         if (_game.IsPaused)
         {
             _game.Resume();
             _timer.Start();
-            PauseButton.Text = "Pause";
+            PauseButton.Text = "Paus";
             SetBoardEnabled(true);
         }
         else
         {
             _game.Pause();
             _timer.Stop();
-            PauseButton.Text = "Resume";
+            PauseButton.Text = "Jätka";
             SetBoardEnabled(false);
         }
 
@@ -303,6 +407,11 @@ public partial class MinesweeperPage : ContentPage
             var position = ((int Row, int Column))button.BindingContext;
             button.IsEnabled = isEnabled && !_game.Board[position.Row, position.Column].IsOpen;
         }
+
+        if (!isEnabled)
+        {
+            HideCellActionPopup();
+        }
     }
 
     private void OnThemeChanged(object sender, EventArgs e)
@@ -313,17 +422,98 @@ public partial class MinesweeperPage : ContentPage
         }
     }
 
+    private void OnSizeChanged(object sender, EventArgs e)
+    {
+        if (_isInitializing || SizePicker.SelectedItem is not BoardSize boardSize)
+        {
+            return;
+        }
+
+        _selectedBoardSize = boardSize;
+        _game = CreateGame(_selectedBoardSize);
+        CreateBoard();
+        StartGame();
+    }
+
     private void OnPlayerNameChanged(object sender, TextChangedEventArgs e)
     {
-        _player.Name = string.IsNullOrWhiteSpace(e.NewTextValue) ? "Player" : e.NewTextValue.Trim();
+        _player.Name = string.IsNullOrWhiteSpace(e.NewTextValue) ? "Mängija" : e.NewTextValue.Trim();
+    }
+
+    private async Task ShowCellActionPopup()
+    {
+        CellActionPopup.IsVisible = true;
+        CellActionPopup.AbortAnimation("CellActionPopup");
+        await Task.WhenAll(
+            CellActionPopup.FadeToAsync(1, 90, Easing.CubicOut),
+            CellActionPopup.ScaleToAsync(1, 90, Easing.CubicOut));
+    }
+
+    private void HideCellActionPopup()
+    {
+        _selectedCell = null;
+        CellActionPopup.IsVisible = false;
+        CellActionPopup.Opacity = 0;
+        CellActionPopup.Scale = 0.85;
+    }
+
+    private async Task HideCellActionPopupAsync()
+    {
+        if (!CellActionPopup.IsVisible)
+        {
+            _selectedCell = null;
+            return;
+        }
+
+        await Task.WhenAll(
+            CellActionPopup.FadeToAsync(0, 70, Easing.CubicIn),
+            CellActionPopup.ScaleToAsync(0.85, 70, Easing.CubicIn));
+        HideCellActionPopup();
+        SelectedCellLabel.Text = string.Empty;
+    }
+
+    private async void OnPopupOpenClicked(object sender, EventArgs e)
+    {
+        await OpenSelectedCell();
+    }
+
+    private async void OnPopupFlagClicked(object sender, EventArgs e)
+    {
+        await ToggleSelectedFlag();
+    }
+
+    private async void OnPopupCloseClicked(object sender, EventArgs e)
+    {
+        await HideCellActionPopupAsync();
     }
 
     private async void OnTopScoreClicked(object sender, EventArgs e)
     {
         var bestTime = _player.BestTime is null ? "--:--" : FormatTime(_player.BestTime.Value);
         await DisplayAlertAsync(
-            "Top score",
-            $"Best score: {_player.BestScore}\nBest time: {bestTime}\nWon: {_player.GamesWon}\nLost: {_player.GamesLost}",
+            "Parim tulemus",
+            $"Parim punktisumma: {_player.BestScore}\nParim aeg: {bestTime}\nVõidud: {_player.GamesWon}\nKaotused: {_player.GamesLost}",
             "OK");
+    }
+
+    private sealed class BoardSize
+    {
+        public string Name { get; }
+        public int Rows { get; }
+        public int Columns { get; }
+        public int Mines { get; }
+
+        public BoardSize(string name, int rows, int columns, int mines)
+        {
+            Name = name;
+            Rows = rows;
+            Columns = columns;
+            Mines = mines;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} - {Mines} miini";
+        }
     }
 }

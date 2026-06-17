@@ -8,7 +8,9 @@ public class Theme
     public Color TextColor { get; }
     public Color AccentColor { get; }
     public Color HiddenCellColor { get; }
+    public Color HiddenCellAltColor { get; }
     public Color OpenCellColor { get; }
+    public Color OpenCellAltColor { get; }
     public Color DangerColor { get; }
     public string FontFamily { get; }
 
@@ -19,7 +21,9 @@ public class Theme
         Color textColor,
         Color accentColor,
         Color hiddenCellColor,
+        Color hiddenCellAltColor,
         Color openCellColor,
+        Color openCellAltColor,
         Color dangerColor,
         string fontFamily)
     {
@@ -29,7 +33,9 @@ public class Theme
         TextColor = textColor;
         AccentColor = accentColor;
         HiddenCellColor = hiddenCellColor;
+        HiddenCellAltColor = hiddenCellAltColor;
         OpenCellColor = openCellColor;
+        OpenCellAltColor = openCellAltColor;
         DangerColor = dangerColor;
         FontFamily = fontFamily;
     }
@@ -41,7 +47,9 @@ public class Theme
         page.Resources["MinesTextColor"] = TextColor;
         page.Resources["MinesAccentColor"] = AccentColor;
         page.Resources["MinesHiddenCellColor"] = HiddenCellColor;
+        page.Resources["MinesHiddenCellAltColor"] = HiddenCellAltColor;
         page.Resources["MinesOpenCellColor"] = OpenCellColor;
+        page.Resources["MinesOpenCellAltColor"] = OpenCellAltColor;
         page.Resources["MinesDangerColor"] = DangerColor;
         page.Resources["MinesFontFamily"] = FontFamily;
         page.BackgroundColor = BackgroundColor;

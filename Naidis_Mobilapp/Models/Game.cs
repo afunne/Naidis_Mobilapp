@@ -16,6 +16,7 @@ public class Game
     public bool IsStarted { get; private set; }
     public bool IsPaused { get; private set; }
     public bool IsEnded { get; private set; }
+    public bool IsBoardPrepared { get; private set; }
     public bool IsWon => IsEnded && OpenedCells == Rows * Columns - MineCount;
 
     public TimeSpan Elapsed
@@ -57,16 +58,14 @@ public class Game
     public void Start()
     {
         Board = CreateEmptyBoard();
-        PlaceMines();
-        CalculateNearbyMines();
 
         Score = 0;
         OpenedCells = 0;
-        IsStarted = true;
+        IsStarted = false;
         IsPaused = false;
         IsEnded = false;
+        IsBoardPrepared = false;
         _elapsedBeforePause = TimeSpan.Zero;
-        _startedAt = DateTime.UtcNow;
         Player.ResetRound();
     }
 
@@ -94,13 +93,23 @@ public class Game
 
     public IReadOnlyList<MinesweeperCell> OpenCell(int row, int column)
     {
-        if (!CanPlay(row, column))
+        if (!CanOpen(row, column))
         {
             return Array.Empty<MinesweeperCell>();
         }
 
         var changedCells = new List<MinesweeperCell>();
         var cell = Board[row, column];
+
+        if (cell.IsFlagged)
+        {
+            return changedCells;
+        }
+
+        if (!IsBoardPrepared)
+        {
+            PrepareBoard(row, column);
+        }
 
         if (cell.IsMine)
         {
@@ -123,7 +132,7 @@ public class Game
 
     public bool ToggleFlag(int row, int column)
     {
-        if (!CanPlay(row, column))
+        if (!CanUseCell(row, column))
         {
             return false;
         }
@@ -171,7 +180,13 @@ public class Game
 
     private void PlaceMines()
     {
+        PlaceMines(-1, -1);
+    }
+
+    private void PlaceMines(int safeRow, int safeColumn)
+    {
         var placed = 0;
+        var safeCells = GetSafeFirstClickArea(safeRow, safeColumn).ToHashSet();
 
         while (placed < MineCount)
         {
@@ -179,13 +194,39 @@ public class Game
             var column = _random.Next(Columns);
             var cell = Board[row, column];
 
-            if (cell.IsMine)
+            if (cell.IsMine || safeCells.Contains((row, column)))
             {
                 continue;
             }
 
             cell.PlaceMine();
             placed++;
+        }
+    }
+
+    private void PrepareBoard(int firstRow, int firstColumn)
+    {
+        PlaceMines(firstRow, firstColumn);
+        CalculateNearbyMines();
+        IsBoardPrepared = true;
+        IsStarted = true;
+        _startedAt = DateTime.UtcNow;
+    }
+
+    private IEnumerable<(int Row, int Column)> GetSafeFirstClickArea(int row, int column)
+    {
+        for (var rowOffset = -1; rowOffset <= 1; rowOffset++)
+        {
+            for (var columnOffset = -1; columnOffset <= 1; columnOffset++)
+            {
+                var safeRow = row + rowOffset;
+                var safeColumn = column + columnOffset;
+
+                if (safeRow >= 0 && safeRow < Rows && safeColumn >= 0 && safeColumn < Columns)
+                {
+                    yield return (safeRow, safeColumn);
+                }
+            }
         }
     }
 
@@ -265,11 +306,15 @@ public class Game
         }
     }
 
-    private bool CanPlay(int row, int column)
+    private bool CanOpen(int row, int column)
     {
-        return IsStarted
-            && !IsPaused
-            && !IsEnded
+        return CanUseCell(row, column)
+            && !IsPaused;
+    }
+
+    private bool CanUseCell(int row, int column)
+    {
+        return !IsEnded
             && row >= 0
             && row < Rows
             && column >= 0

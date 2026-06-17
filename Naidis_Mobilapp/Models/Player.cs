@@ -21,7 +21,7 @@ public class Player
 
     public Player(string name)
     {
-        Name = string.IsNullOrWhiteSpace(name) ? "Player" : name.Trim();
+        Name = string.IsNullOrWhiteSpace(name) ? "Mängija" : name.Trim();
         BestScore = Preferences.Default.Get(BestScoreKey, 0);
 
         var bestTimeSeconds = Preferences.Default.Get(BestTimeKey, 0);

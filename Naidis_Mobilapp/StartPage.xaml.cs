@@ -11,7 +11,7 @@ public partial class StartPage : ContentPage
 	public StartPage()
 	{
 		Title = "Avaleht";
-        LeheNimed.Add("Minesweeper");
+        LeheNimed.Add("Miiniväli");
 		vst = new VerticalStackLayout { Padding=20, Spacing=15};
 		for (int i=0; i < Lehed.Count; i++)
         {

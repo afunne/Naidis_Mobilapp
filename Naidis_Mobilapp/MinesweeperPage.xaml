@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Naidis_Mobilapp.MinesweeperPage"
-             Title="Minesweeper"
+             Title="Miiniväli"
              BackgroundColor="{DynamicResource MinesBackgroundColor}">
     <ContentPage.Resources>
         <Color x:Key="MinesBackgroundColor">#F7F1E5</Color>
@@ -10,7 +10,9 @@
         <Color x:Key="MinesTextColor">#263238</Color>
         <Color x:Key="MinesAccentColor">#2E7D7A</Color>
         <Color x:Key="MinesHiddenCellColor">#6E9C89</Color>
+        <Color x:Key="MinesHiddenCellAltColor">#79AD62</Color>
         <Color x:Key="MinesOpenCellColor">#EFE7D3</Color>
+        <Color x:Key="MinesOpenCellAltColor">#E3D0AE</Color>
         <Color x:Key="MinesDangerColor">#C44536</Color>
         <x:String x:Key="MinesFontFamily">OpenSansRegular</x:String>
 
@@ -20,23 +22,24 @@
         </Style>
     </ContentPage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Padding="18" Spacing="14">
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="18" Spacing="14">
             <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
                 <Label Grid.Row="0"
                        Grid.Column="0"
-                       Text="Minesweeper"
+                       Text="Miiniväli"
                        FontSize="30"
                        FontAttributes="Bold"
                        Style="{StaticResource MinesLabelStyle}" />
                 <Label Grid.Row="1"
                        Grid.Column="0"
-                       Text="Open safe cells, flag mines, survive."
+                       Text="Ava ohutud ruudud, märgi miinid ja jää ellu."
                        FontSize="13"
                        Style="{StaticResource MinesLabelStyle}" />
                 <Button Grid.RowSpan="2"
                         Grid.Column="1"
-                        Text="New"
+                        Text="Uus"
                         Clicked="OnNewGameClicked"
                         BackgroundColor="{DynamicResource MinesAccentColor}"
                         TextColor="White"
@@ -48,12 +51,12 @@
                     StrokeThickness="1"
                     Padding="12"
                     StrokeShape="RoundRectangle 8">
-                <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="10">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="10">
                     <Entry x:Name="PlayerNameEntry"
                            Grid.Row="0"
                            Grid.Column="0"
-                           Placeholder="Player name"
-                           Text="Player"
+                           Placeholder="Mängija nimi"
+                           Text="Mängija"
                            TextColor="{DynamicResource MinesTextColor}"
                            PlaceholderColor="{DynamicResource MinesTextColor}"
                            FontFamily="{DynamicResource MinesFontFamily}"
@@ -61,62 +64,113 @@
                     <Picker x:Name="ThemePicker"
                             Grid.Row="0"
                             Grid.Column="1"
-                            Title="Theme"
+                            Title="Teema"
                             TextColor="{DynamicResource MinesTextColor}"
                             FontFamily="{DynamicResource MinesFontFamily}"
                             SelectedIndexChanged="OnThemeChanged" />
 
+                    <Picker x:Name="SizePicker"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Title="Laua suurus"
+                            TextColor="{DynamicResource MinesTextColor}"
+                            FontFamily="{DynamicResource MinesFontFamily}"
+                            SelectedIndexChanged="OnSizeChanged" />
+
                     <Label x:Name="ScoreLabel"
-                           Grid.Row="1"
+                           Grid.Row="2"
                            Grid.Column="0"
-                           Text="Score: 0"
+                           Text="Punktid: 0"
                            Style="{StaticResource MinesLabelStyle}" />
                     <Label x:Name="TimeLabel"
-                           Grid.Row="1"
+                           Grid.Row="2"
                            Grid.Column="1"
-                           Text="Time: 00:00"
+                           Text="Aeg: 00:00"
                            HorizontalTextAlignment="End"
                            Style="{StaticResource MinesLabelStyle}" />
 
                     <Label x:Name="FlagsLabel"
-                           Grid.Row="2"
+                           Grid.Row="3"
                            Grid.Column="0"
-                           Text="Flags: 10"
+                           Text="Lipud: 10"
                            Style="{StaticResource MinesLabelStyle}" />
-                    <HorizontalStackLayout Grid.Row="2"
-                                           Grid.Column="1"
-                                           HorizontalOptions="End"
-                                           Spacing="6">
-                        <CheckBox x:Name="FlagModeCheckBox"
-                                  Color="{DynamicResource MinesAccentColor}" />
-                        <Label Text="Flag mode"
-                               VerticalOptions="Center"
-                               Style="{StaticResource MinesLabelStyle}" />
-                    </HorizontalStackLayout>
+                    <Label Grid.Row="3"
+                           Grid.Column="1"
+                           x:Name="SelectedCellLabel"
+                           Text=""
+                           HorizontalTextAlignment="End"
+                           Style="{StaticResource MinesLabelStyle}" />
                 </Grid>
             </Border>
 
             <Grid x:Name="BoardGrid"
-                  RowSpacing="3"
-                  ColumnSpacing="3"
+                  RowSpacing="0"
+                  ColumnSpacing="0"
                   HorizontalOptions="Center"
                   VerticalOptions="Center" />
 
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                 <Button x:Name="PauseButton"
                         Grid.Column="0"
-                        Text="Pause"
+                        Text="Paus"
                         Clicked="OnPauseClicked"
                         BackgroundColor="{DynamicResource MinesAccentColor}"
                         TextColor="White"
                         FontFamily="{DynamicResource MinesFontFamily}" />
                 <Button Grid.Column="1"
-                        Text="Top score"
+                        Text="Parim tulemus"
                         Clicked="OnTopScoreClicked"
                         BackgroundColor="{DynamicResource MinesAccentColor}"
                         TextColor="White"
                         FontFamily="{DynamicResource MinesFontFamily}" />
             </Grid>
-        </VerticalStackLayout>
-    </ScrollView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Border x:Name="CellActionPopup"
+                IsVisible="False"
+                Opacity="0"
+                Scale="0.85"
+                BackgroundColor="{DynamicResource MinesSurfaceColor}"
+                Stroke="{DynamicResource MinesAccentColor}"
+                StrokeThickness="1"
+                Padding="10"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                StrokeShape="RoundRectangle 8">
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="X"
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        CornerRadius="22"
+                        Padding="0"
+                        Clicked="OnPopupCloseClicked"
+                        BackgroundColor="{DynamicResource MinesHiddenCellColor}"
+                        TextColor="White"
+                        FontFamily="{DynamicResource MinesFontFamily}" />
+                <Button x:Name="PopupOpenButton"
+                        Text=""
+                        ImageSource="mines_shovel.svg"
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        CornerRadius="22"
+                        Padding="0"
+                        Clicked="OnPopupOpenClicked"
+                        BackgroundColor="{DynamicResource MinesOpenCellColor}"
+                        TextColor="{DynamicResource MinesTextColor}"
+                        FontFamily="{DynamicResource MinesFontFamily}" />
+                <Button x:Name="PopupFlagButton"
+                        Text=""
+                        ImageSource="mines_flag.svg"
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        CornerRadius="22"
+                        Padding="0"
+                        Clicked="OnPopupFlagClicked"
+                        BackgroundColor="{DynamicResource MinesAccentColor}"
+                        TextColor="White"
+                        FontFamily="{DynamicResource MinesFontFamily}" />
+            </HorizontalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>
