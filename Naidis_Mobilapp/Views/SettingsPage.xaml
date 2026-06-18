@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.Views.SettingsPage"
+             Title="{Binding PageTitle}"
+             BackgroundColor="#F4F7F2">
+    <VerticalStackLayout Padding="18"
+                         Spacing="14">
+        <Label Text="{Binding PageTitle}"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="#143D2B" />
+
+        <Label Text="{Binding LanguageTitle}"
+               FontSize="18"
+               FontAttributes="Bold"
+               TextColor="#26382B" />
+
+        <Grid ColumnDefinitions="*, *, *"
+              ColumnSpacing="10">
+            <Button Text="{Binding EstonianText}"
+                    Command="{Binding ChangeLanguageCommand}"
+                    CommandParameter="et"
+                    BackgroundColor="#2F6B45"
+                    TextColor="White"
+                    CornerRadius="8" />
+            <Button Text="{Binding EnglishText}"
+                    Grid.Column="1"
+                    Command="{Binding ChangeLanguageCommand}"
+                    CommandParameter="en"
+                    BackgroundColor="#2F6B45"
+                    TextColor="White"
+                    CornerRadius="8" />
+            <Button Text="{Binding RussianText}"
+                    Grid.Column="2"
+                    Command="{Binding ChangeLanguageCommand}"
+                    CommandParameter="ru"
+                    BackgroundColor="#2F6B45"
+                    TextColor="White"
+                    CornerRadius="8" />
+        </Grid>
+
+        <Label Text="{Binding SavedText}"
+               FontSize="14"
+               TextColor="#4A5A50"
+               LineBreakMode="WordWrap" />
+    </VerticalStackLayout>
+</ContentPage>

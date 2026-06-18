@@ -66,6 +66,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.41" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -92,17 +93,12 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<Target Name="PrepareIosAppBundleForBuild"
-			BeforeTargets="Build"
-			Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' and Exists('$(AppBundleDir)')">
+	<Target Name="PrepareIosAppBundleForBuild" BeforeTargets="Build" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' and Exists('$(AppBundleDir)')">
 		<Message Importance="high" Text="Removing stale iOS app bundle at $(AppBundleDir) before rebuild." />
 		<RemoveDir Directories="$(AppBundleDir)" />
 	</Target>
 
-	<Target Name="CleanIosBundleExtendedAttributes"
-			AfterTargets="_CreateAppBundle"
-			BeforeTargets="CoreCodesign"
-			Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' and Exists('$(AppBundleDir)')">
+	<Target Name="CleanIosBundleExtendedAttributes" AfterTargets="_CreateAppBundle" BeforeTargets="CoreCodesign" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' and Exists('$(AppBundleDir)')">
 		<Message Importance="high" Text="Removing macOS extended attributes from $(AppBundleDir) before codesigning." />
 		<Exec Command="/usr/bin/xattr -cr &quot;$(AppBundleDir)&quot;" />
 	</Target>

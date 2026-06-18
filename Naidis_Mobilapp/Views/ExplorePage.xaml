@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.Views.ExplorePage"
+             x:Name="ExploreRoot"
+             Title="{Binding PageTitle}"
+             BackgroundColor="#F4F7F2">
+    <Grid ColumnDefinitions="*, Auto"
+          RowDefinitions="Auto, *, Auto"
+          Padding="14"
+          ColumnSpacing="10">
+        <Label Text="{Binding PageTitle}"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="#143D2B" />
+
+        <CarouselView x:Name="PlacesCarousel"
+                      Grid.Row="1"
+                      ItemsSource="{Binding Places}"
+                      IndicatorView="PlacesIndicator"
+                      PeekAreaInsets="18"
+                      Loop="True">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="6,10"
+                            Padding="0"
+                            BackgroundColor="White"
+                            Stroke="#DCE7DD"
+                            StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <Grid RowDefinitions="230, Auto, Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnPlaceTapped" />
+                            </Grid.GestureRecognizers>
+
+                            <Image Source="{Binding ImageUrl}"
+                                   Aspect="AspectFill"
+                                   BackgroundColor="#DCE7DD" />
+
+                            <VerticalStackLayout Grid.Row="1"
+                                                 Padding="16,14,16,6"
+                                                 Spacing="5">
+                                <Label Text="{Binding Name}"
+                                       FontSize="22"
+                                       FontAttributes="Bold"
+                                       TextColor="#143D2B"
+                                       LineBreakMode="WordWrap" />
+                                <Label Text="{Binding ShortDescription}"
+                                       FontSize="15"
+                                       TextColor="#4A5A50"
+                                       LineBreakMode="WordWrap" />
+                            </VerticalStackLayout>
+
+                            <Label Grid.Row="2"
+                                   Text="{Binding Source={x:Reference ExploreRoot}, Path=BindingContext.TapHint}"
+                                   Padding="16,2,16,16"
+                                   FontSize="13"
+                                   FontAttributes="Bold"
+                                   TextColor="#2F6B45" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <VerticalStackLayout Grid.Column="1"
+                             Grid.RowSpan="3"
+                             Spacing="12"
+                             VerticalOptions="Start">
+            <Button Text="{Binding CategoryMenuButtonText}"
+                    FontSize="26"
+                    HeightRequest="54"
+                    WidthRequest="54"
+                    Padding="0"
+                    CornerRadius="27"
+                    BackgroundColor="#2F6B45"
+                    TextColor="White"
+                    Command="{Binding ToggleCategoryMenuCommand}" />
+
+            <CollectionView ItemsSource="{Binding Categories}"
+                            IsVisible="{Binding IsCategoryMenuVisible}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Margin="0,4"
+                                             Spacing="3">
+                            <Button Text="{Binding Emoji}"
+                                    FontSize="26"
+                                    HeightRequest="54"
+                                    WidthRequest="54"
+                                    Padding="0"
+                                    CornerRadius="27"
+                                    BackgroundColor="#FFFFFF"
+                                    BorderColor="#BFD6C4"
+                                    BorderWidth="1"
+                                    Command="{Binding BindingContext.SelectCategoryCommand, Source={x:Reference ExploreRoot}}"
+                                    CommandParameter="{Binding .}" />
+                            <Label Text="{Binding Title}"
+                                   FontSize="10"
+                                   TextColor="#143D2B"
+                                   HorizontalTextAlignment="Center"
+                                   WidthRequest="64"
+                                   LineBreakMode="TailTruncation" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
+        <IndicatorView x:Name="PlacesIndicator"
+                       Grid.Row="2"
+                       HorizontalOptions="Center"
+                       IndicatorColor="#BFD6C4"
+                       SelectedIndicatorColor="#2F6B45" />
+    </Grid>
+</ContentPage>

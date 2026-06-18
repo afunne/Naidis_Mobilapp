@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.RecipeDetailPage"
+             Title="{Binding Name}"
+             BackgroundColor="#FBF8F3">
+    <Grid RowDefinitions="*, Auto">
+        <ScrollView>
+            <VerticalStackLayout Spacing="0">
+                <Grid HeightRequest="285">
+                    <Image Source="{Binding ImageLink}"
+                           Aspect="AspectFill"
+                           BackgroundColor="#E9DED0" />
+
+                    <Border HeightRequest="54"
+                            WidthRequest="54"
+                            Margin="18"
+                            Padding="0"
+                            BackgroundColor="#FFFFFF"
+                            Stroke="#B9DFC8"
+                            StrokeThickness="1"
+                            HorizontalOptions="Start"
+                            VerticalOptions="End">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnPinTapped" />
+                        </Border.GestureRecognizers>
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="27" />
+                        </Border.StrokeShape>
+                        <Label Text="PIN"
+                               FontAttributes="Bold"
+                               FontSize="12"
+                               TextColor="#2E8B57"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                    </Border>
+
+                    <Border HeightRequest="54"
+                            WidthRequest="54"
+                            Margin="18"
+                            Padding="0"
+                            BackgroundColor="#2E8B57"
+                            Stroke="#2E8B57"
+                            HorizontalOptions="End"
+                            VerticalOptions="End">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFavoriteTapped" />
+                        </Border.GestureRecognizers>
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="27" />
+                        </Border.StrokeShape>
+                        <Label Text="OK"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                    </Border>
+                </Grid>
+
+                <Border Margin="0,-18,0,0"
+                        Padding="22,24,22,18"
+                        BackgroundColor="White"
+                        StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="22,22,0,0" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="18">
+                        <Label Text="{Binding Name}"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="#2A2927"
+                               LineBreakMode="WordWrap" />
+
+                        <Grid ColumnDefinitions="*, *, *, *, *"
+                              ColumnSpacing="8">
+                            <VerticalStackLayout Spacing="4">
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCookTapped" />
+                                </VerticalStackLayout.GestureRecognizers>
+                                <Border HeightRequest="44"
+                                        WidthRequest="44"
+                                        Padding="0"
+                                        BackgroundColor="#2E8B57"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="22" />
+                                    </Border.StrokeShape>
+                                    <Label Text="K"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" />
+                                </Border>
+                                <Label Text="Kokk"
+                                       FontSize="12"
+                                       TextColor="#2A2927"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="4">
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPlanTapped" />
+                                </VerticalStackLayout.GestureRecognizers>
+                                <Border HeightRequest="44"
+                                        WidthRequest="44"
+                                        Padding="0"
+                                        BackgroundColor="#2E8B57"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="22" />
+                                    </Border.StrokeShape>
+                                    <Label Text="+"
+                                           FontSize="28"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" />
+                                </Border>
+                                <Label Text="Plaan"
+                                       FontSize="12"
+                                       TextColor="#2A2927"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="2"
+                                                 Spacing="4">
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnShopTapped" />
+                                </VerticalStackLayout.GestureRecognizers>
+                                <Border HeightRequest="44"
+                                        WidthRequest="44"
+                                        Padding="0"
+                                        BackgroundColor="#2E8B57"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="22" />
+                                    </Border.StrokeShape>
+                                    <Label Text="O"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" />
+                                </Border>
+                                <Label Text="Ost"
+                                       FontSize="12"
+                                       TextColor="#2A2927"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="3"
+                                                 Spacing="4">
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnRateTapped" />
+                                </VerticalStackLayout.GestureRecognizers>
+                                <Border HeightRequest="44"
+                                        WidthRequest="44"
+                                        Padding="0"
+                                        BackgroundColor="#2E8B57"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="22" />
+                                    </Border.StrokeShape>
+                                    <Label x:Name="RatingActionLabel"
+                                           Text="5"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" />
+                                </Border>
+                                <Label Text="Hinda"
+                                       FontSize="12"
+                                       TextColor="#2A2927"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="4"
+                                                 Spacing="4">
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnEditTapped" />
+                                </VerticalStackLayout.GestureRecognizers>
+                                <Border HeightRequest="44"
+                                        WidthRequest="44"
+                                        Padding="0"
+                                        BackgroundColor="#2E8B57"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="22" />
+                                    </Border.StrokeShape>
+                                    <Label Text="M"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" />
+                                </Border>
+                                <Label Text="Muuda"
+                                       FontSize="12"
+                                       TextColor="#2A2927"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <Label Text="{Binding Description}"
+                               FontSize="17"
+                               TextColor="#3B3936"
+                               LineBreakMode="WordWrap" />
+
+                        <ScrollView Orientation="Horizontal">
+                            <HorizontalStackLayout Spacing="10">
+                                <Border Padding="12,8"
+                                        BackgroundColor="#ECF7EF"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="18" />
+                                    </Border.StrokeShape>
+                                    <Label x:Name="ServingsLabel"
+                                           TextColor="#2E8B57"
+                                           FontAttributes="Bold" />
+                                </Border>
+
+                                <Border Padding="12,8"
+                                        BackgroundColor="#ECF7EF"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="18" />
+                                    </Border.StrokeShape>
+                                    <Label x:Name="PrepLabel"
+                                           TextColor="#2E8B57"
+                                           FontAttributes="Bold" />
+                                </Border>
+
+                                <Border Padding="12,8"
+                                        BackgroundColor="#ECF7EF"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="18" />
+                                    </Border.StrokeShape>
+                                    <Label x:Name="CookLabel"
+                                           TextColor="#2E8B57"
+                                           FontAttributes="Bold" />
+                                </Border>
+
+                                <Border Padding="12,8"
+                                        BackgroundColor="#ECF7EF"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="18" />
+                                    </Border.StrokeShape>
+                                    <Label Text="{Binding Category}"
+                                           TextColor="#2E8B57"
+                                           FontAttributes="Bold" />
+                                </Border>
+
+                                <Border Padding="12,8"
+                                        BackgroundColor="#ECF7EF"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="18" />
+                                    </Border.StrokeShape>
+                                    <Label x:Name="RatingLabel"
+                                           TextColor="#2E8B57"
+                                           FontAttributes="Bold" />
+                                </Border>
+                            </HorizontalStackLayout>
+                        </ScrollView>
+
+                        <Label x:Name="SectionTitleLabel"
+                               Text="Ülevaade"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#2A2927" />
+
+                        <Label x:Name="SectionTextLabel"
+                               FontSize="16"
+                               TextColor="#3B3936"
+                               LineHeight="1.18"
+                               LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*, *, *"
+              HeightRequest="68"
+              BackgroundColor="White"
+              Padding="8,6">
+            <Button Text="Ülevaade"
+                    Clicked="OnAboutClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="#2E8B57" />
+            <Button Text="Koostisosad"
+                    Grid.Column="1"
+                    Clicked="OnIngredientsClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="#2A2927" />
+            <Button Text="Juhised"
+                    Grid.Column="2"
+                    Clicked="OnInstructionsClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="#2A2927" />
+        </Grid>
+    </Grid>
+</ContentPage>

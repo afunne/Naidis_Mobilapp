@@ -30,4 +30,36 @@
   <data name="SavedLanguageText" xml:space="preserve">
     <value>Выбранный язык сохраняется и восстанавливается при запуске приложения.</value>
   </data>
+  <data name="CityExploreTitle" xml:space="preserve"><value>Открыть</value></data>
+  <data name="CityFavoritesTitle" xml:space="preserve"><value>Мои избранные</value></data>
+  <data name="CitySettingsTitle" xml:space="preserve"><value>Настройки</value></data>
+  <data name="CityTapHint" xml:space="preserve"><value>Нажмите на карточку для деталей и избранного</value></data>
+  <data name="CityAddFavorite" xml:space="preserve"><value>Добавить в избранное</value></data>
+  <data name="CityClose" xml:space="preserve"><value>Закрыть</value></data>
+  <data name="CityFavoriteAdded" xml:space="preserve"><value>Место добавлено в избранное.</value></data>
+  <data name="CityFavoriteExists" xml:space="preserve"><value>Это место уже в избранном.</value></data>
+  <data name="CityFavoritesEmpty" xml:space="preserve"><value>Избранных мест пока нет. Добавьте места на вкладке Открыть.</value></data>
+  <data name="CityLanguageTitle" xml:space="preserve"><value>Выберите язык</value></data>
+  <data name="CityLanguageSaved" xml:space="preserve"><value>Выбранный язык сохраняется и восстанавливается при запуске приложения.</value></data>
+  <data name="CityCategoryHistory" xml:space="preserve"><value>История</value></data>
+  <data name="CityCategoryParks" xml:space="preserve"><value>Парки</value></data>
+  <data name="CityCategoryFood" xml:space="preserve"><value>Еда</value></data>
+  <data name="CityPlaceOldTownName" xml:space="preserve"><value>Старый город Таллина</value></data>
+  <data name="CityPlaceOldTownShort" xml:space="preserve"><value>Средневековый центр города из списка ЮНЕСКО.</value></data>
+  <data name="CityPlaceOldTownDetail" xml:space="preserve"><value>Старый город Таллина является одним из лучше всего сохранившихся средневековых центров Европы с мощеными улицами, стенами, башнями, кафе и смотровыми площадками.</value></data>
+  <data name="CityPlaceToompeaName" xml:space="preserve"><value>Замок Тоомпеа</value></data>
+  <data name="CityPlaceToompeaShort" xml:space="preserve"><value>Исторический замок и здание парламента на холме.</value></data>
+  <data name="CityPlaceToompeaDetail" xml:space="preserve"><value>Замок Тоомпеа возвышается над старым городом и связан с политической историей Эстонии. Рядом находятся смотровые площадки с красивым видом на Таллин.</value></data>
+  <data name="CityPlaceKadriorgName" xml:space="preserve"><value>Парк Кадриорг</value></data>
+  <data name="CityPlaceKadriorgShort" xml:space="preserve"><value>Элегантный парк с дворцом, садами и музеями.</value></data>
+  <data name="CityPlaceKadriorgDetail" xml:space="preserve"><value>Парк Кадриорг - спокойная зеленая зона с дворцом, художественными музеями, прогулочными дорожками, цветниками и тихими местами для отдыха.</value></data>
+  <data name="CityPlacePiritaName" xml:space="preserve"><value>Пляж Пирита</value></data>
+  <data name="CityPlacePiritaShort" xml:space="preserve"><value>Морское место для прогулок, плавания и закатов.</value></data>
+  <data name="CityPlacePiritaDetail" xml:space="preserve"><value>Пляж Пирита - одно из любимых морских мест Таллина. Он подходит для летнего купания, прогулок, велосипедных поездок и вида на городской силуэт.</value></data>
+  <data name="CityPlaceBaltiJaamName" xml:space="preserve"><value>Рынок Балтийского вокзала</value></data>
+  <data name="CityPlaceBaltiJaamShort" xml:space="preserve"><value>Живой рынок с местной едой и уличной кухней.</value></data>
+  <data name="CityPlaceBaltiJaamDetail" xml:space="preserve"><value>Рынок Балтийского вокзала сочетает свежие продукты, кафе, уличную еду, дизайнерские магазины и местную атмосферу рядом с вокзалом.</value></data>
+  <data name="CityPlaceTelliskiviName" xml:space="preserve"><value>Творческий городок Теллискиви</value></data>
+  <data name="CityPlaceTelliskiviShort" xml:space="preserve"><value>Творческий квартал с ресторанами, магазинами и событиями.</value></data>
+  <data name="CityPlaceTelliskiviDetail" xml:space="preserve"><value>Теллискиви - популярный район с ресторанами, небольшими магазинами, галереями, настенными рисунками, событиями и свободной городской атмосферой.</value></data>
 </root>

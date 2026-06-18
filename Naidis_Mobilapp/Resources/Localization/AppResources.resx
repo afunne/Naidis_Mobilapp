@@ -126,4 +126,36 @@
   <data name="CppAlertMessage" xml:space="preserve">
     <value>Hello World example:\nstd::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl;\nCreated in 1983.</value>
   </data>
+  <data name="CityExploreTitle" xml:space="preserve"><value>Explore</value></data>
+  <data name="CityFavoritesTitle" xml:space="preserve"><value>My Favorites</value></data>
+  <data name="CitySettingsTitle" xml:space="preserve"><value>Settings</value></data>
+  <data name="CityTapHint" xml:space="preserve"><value>Tap the card for details and favorites</value></data>
+  <data name="CityAddFavorite" xml:space="preserve"><value>Add to favorites</value></data>
+  <data name="CityClose" xml:space="preserve"><value>Close</value></data>
+  <data name="CityFavoriteAdded" xml:space="preserve"><value>Place added to favorites.</value></data>
+  <data name="CityFavoriteExists" xml:space="preserve"><value>This place is already in favorites.</value></data>
+  <data name="CityFavoritesEmpty" xml:space="preserve"><value>No favorites yet. Add places from Explore.</value></data>
+  <data name="CityLanguageTitle" xml:space="preserve"><value>Choose language</value></data>
+  <data name="CityLanguageSaved" xml:space="preserve"><value>The selected language is saved and restored when the app starts.</value></data>
+  <data name="CityCategoryHistory" xml:space="preserve"><value>History</value></data>
+  <data name="CityCategoryParks" xml:space="preserve"><value>Parks</value></data>
+  <data name="CityCategoryFood" xml:space="preserve"><value>Food</value></data>
+  <data name="CityPlaceOldTownName" xml:space="preserve"><value>Tallinn Old Town</value></data>
+  <data name="CityPlaceOldTownShort" xml:space="preserve"><value>A UNESCO-listed medieval city center.</value></data>
+  <data name="CityPlaceOldTownDetail" xml:space="preserve"><value>Tallinn Old Town is one of the best-preserved medieval city centers in Europe, with cobblestone streets, city walls, towers, cafes, and viewpoints.</value></data>
+  <data name="CityPlaceToompeaName" xml:space="preserve"><value>Toompea Castle</value></data>
+  <data name="CityPlaceToompeaShort" xml:space="preserve"><value>A historic hilltop castle and parliament building.</value></data>
+  <data name="CityPlaceToompeaDetail" xml:space="preserve"><value>Toompea Castle stands above the old town and is connected with Estonia's political history. Nearby viewpoints offer beautiful views over Tallinn.</value></data>
+  <data name="CityPlaceKadriorgName" xml:space="preserve"><value>Kadriorg Park</value></data>
+  <data name="CityPlaceKadriorgShort" xml:space="preserve"><value>Elegant park with palace gardens and museums.</value></data>
+  <data name="CityPlaceKadriorgDetail" xml:space="preserve"><value>Kadriorg Park is a calm green area with Kadriorg Palace, art museums, walking paths, flower gardens, and quiet places for a city break.</value></data>
+  <data name="CityPlacePiritaName" xml:space="preserve"><value>Pirita Beach</value></data>
+  <data name="CityPlacePiritaShort" xml:space="preserve"><value>A seaside area for walks, swimming, and sunsets.</value></data>
+  <data name="CityPlacePiritaDetail" xml:space="preserve"><value>Pirita Beach is one of Tallinn's most loved seaside areas. It is a good place for summer swimming, long walks, cycling, and views of the city skyline.</value></data>
+  <data name="CityPlaceBaltiJaamName" xml:space="preserve"><value>Balti Jaam Market</value></data>
+  <data name="CityPlaceBaltiJaamShort" xml:space="preserve"><value>A lively market with local food and street eats.</value></data>
+  <data name="CityPlaceBaltiJaamDetail" xml:space="preserve"><value>Balti Jaam Market mixes fresh produce, cafes, street food, design shops, and local atmosphere next to the railway station.</value></data>
+  <data name="CityPlaceTelliskiviName" xml:space="preserve"><value>Telliskivi Creative City</value></data>
+  <data name="CityPlaceTelliskiviShort" xml:space="preserve"><value>Creative quarter with restaurants, shops, and events.</value></data>
+  <data name="CityPlaceTelliskiviDetail" xml:space="preserve"><value>Telliskivi Creative City is a popular district with restaurants, small shops, galleries, murals, events, and a relaxed urban atmosphere.</value></data>
 </root>

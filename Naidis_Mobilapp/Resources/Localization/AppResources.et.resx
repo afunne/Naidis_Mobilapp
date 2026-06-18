@@ -126,4 +126,36 @@
   <data name="CppAlertMessage" xml:space="preserve">
     <value>Hello World näide:\nstd::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl;\nLoodi 1983. aastal.</value>
   </data>
+  <data name="CityExploreTitle" xml:space="preserve"><value>Avasta</value></data>
+  <data name="CityFavoritesTitle" xml:space="preserve"><value>Minu lemmikud</value></data>
+  <data name="CitySettingsTitle" xml:space="preserve"><value>Seaded</value></data>
+  <data name="CityTapHint" xml:space="preserve"><value>Puuduta kaarti lisainfo ja lemmikute jaoks</value></data>
+  <data name="CityAddFavorite" xml:space="preserve"><value>Lisa lemmikutesse</value></data>
+  <data name="CityClose" xml:space="preserve"><value>Sulge</value></data>
+  <data name="CityFavoriteAdded" xml:space="preserve"><value>Koht lisati lemmikutesse.</value></data>
+  <data name="CityFavoriteExists" xml:space="preserve"><value>See koht on juba lemmikutes.</value></data>
+  <data name="CityFavoritesEmpty" xml:space="preserve"><value>Lemmikuid veel ei ole. Lisa kohti Avasta lehelt.</value></data>
+  <data name="CityLanguageTitle" xml:space="preserve"><value>Vali keel</value></data>
+  <data name="CityLanguageSaved" xml:space="preserve"><value>Valitud keel salvestatakse ja taastatakse rakenduse käivitamisel.</value></data>
+  <data name="CityCategoryHistory" xml:space="preserve"><value>Ajalugu</value></data>
+  <data name="CityCategoryParks" xml:space="preserve"><value>Pargid</value></data>
+  <data name="CityCategoryFood" xml:space="preserve"><value>Toidukohad</value></data>
+  <data name="CityPlaceOldTownName" xml:space="preserve"><value>Tallinna vanalinn</value></data>
+  <data name="CityPlaceOldTownShort" xml:space="preserve"><value>UNESCO nimekirja kuuluv keskaegne linnasüda.</value></data>
+  <data name="CityPlaceOldTownDetail" xml:space="preserve"><value>Tallinna vanalinn on üks paremini säilinud keskaegseid linnakeskusi Euroopas, kus on munakivitänavad, linnamüür, tornid, kohvikud ja vaateplatvormid.</value></data>
+  <data name="CityPlaceToompeaName" xml:space="preserve"><value>Toompea loss</value></data>
+  <data name="CityPlaceToompeaShort" xml:space="preserve"><value>Ajalooline lossimägi ja parlamendihoone.</value></data>
+  <data name="CityPlaceToompeaDetail" xml:space="preserve"><value>Toompea loss kõrgub vanalinna kohal ja on seotud Eesti poliitilise ajalooga. Lähedal asuvatelt vaateplatvormidelt avaneb kaunis vaade Tallinnale.</value></data>
+  <data name="CityPlaceKadriorgName" xml:space="preserve"><value>Kadrioru park</value></data>
+  <data name="CityPlaceKadriorgShort" xml:space="preserve"><value>Elegantne park paleeaedade ja muuseumidega.</value></data>
+  <data name="CityPlaceKadriorgDetail" xml:space="preserve"><value>Kadrioru park on rahulik roheala, kus asuvad Kadrioru loss, kunstimuuseumid, jalutusrajad, lilleaiad ja vaiksed puhkekohad.</value></data>
+  <data name="CityPlacePiritaName" xml:space="preserve"><value>Pirita rand</value></data>
+  <data name="CityPlacePiritaShort" xml:space="preserve"><value>Mereäärne paik jalutamiseks, ujumiseks ja päikeseloojanguteks.</value></data>
+  <data name="CityPlacePiritaDetail" xml:space="preserve"><value>Pirita rand on üks Tallinna armastatumaid mereäärseid alasid. See sobib suviseks ujumiseks, pikkadeks jalutuskäikudeks, rattasõiduks ja linnasilueti nautimiseks.</value></data>
+  <data name="CityPlaceBaltiJaamName" xml:space="preserve"><value>Balti Jaama Turg</value></data>
+  <data name="CityPlaceBaltiJaamShort" xml:space="preserve"><value>Elav turg kohaliku toidu ja tänavatoiduga.</value></data>
+  <data name="CityPlaceBaltiJaamDetail" xml:space="preserve"><value>Balti Jaama Turg ühendab värske tooraine, kohvikud, tänavatoidu, disainipoed ja kohaliku õhkkonna otse raudteejaama kõrval.</value></data>
+  <data name="CityPlaceTelliskiviName" xml:space="preserve"><value>Telliskivi Loomelinnak</value></data>
+  <data name="CityPlaceTelliskiviShort" xml:space="preserve"><value>Loomelinnak restoranide, poodide ja üritustega.</value></data>
+  <data name="CityPlaceTelliskiviDetail" xml:space="preserve"><value>Telliskivi Loomelinnak on populaarne piirkond restoranide, väikeste poodide, galeriide, seinamaalingute, ürituste ja vaba linnameluga.</value></data>
 </root>

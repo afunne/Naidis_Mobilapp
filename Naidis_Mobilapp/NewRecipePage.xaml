@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.NewRecipePage"
+             Title="Uus retsept"
+             BackgroundColor="#F7F2EA">
+    <ScrollView>
+        <Grid Padding="18"
+              RowDefinitions="Auto, *">
+            <VerticalStackLayout Spacing="14">
+                <Label Text="Salvesta lemmikretsept"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#26382B" />
+
+                <Label Text="Retsepti nimi"
+                       TextColor="#405144"
+                       FontAttributes="Bold" />
+                <Entry x:Name="NameEntry"
+                       Placeholder="Pasta carbonara"
+                       ClearButtonVisibility="WhileEditing"
+                       BackgroundColor="White"
+                       TextColor="#1D2A20" />
+
+                <Label Text="Kategooria"
+                       TextColor="#405144"
+                       FontAttributes="Bold" />
+                <Picker x:Name="CategoryPicker"
+                        Title="Vali kategooria"
+                        BackgroundColor="White"
+                        TextColor="#1D2A20"
+                        TitleColor="#66706A">
+                    <Picker.Items>
+                        <x:String>Põhiroad</x:String>
+                        <x:String>Magustoidud</x:String>
+                        <x:String>Hommikusöök</x:String>
+                        <x:String>Supid</x:String>
+                        <x:String>Salatid</x:String>
+                        <x:String>Suupisted</x:String>
+                        <x:String>Joogid</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Label Text="Pildi link või telefonist valitud fail"
+                       TextColor="#405144"
+                       FontAttributes="Bold" />
+                <Entry x:Name="ImageLinkEntry"
+                       Placeholder="https://example.com/retsepti-pilt.jpg"
+                       Keyboard="Url"
+                       ClearButtonVisibility="WhileEditing"
+                       BackgroundColor="White"
+                       TextColor="#1D2A20" />
+
+                <Button Text="Vali pilt telefonist"
+                        Clicked="OnChoosePhotoClicked"
+                        BackgroundColor="#E6B655"
+                        TextColor="#1D2A20"
+                        FontAttributes="Bold"
+                        CornerRadius="8" />
+
+                <Button Text="Tee pilt kaameraga"
+                        Clicked="OnTakePhotoClicked"
+                        BackgroundColor="#2E8B57"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="8" />
+
+                <Label x:Name="SelectedPhotoLabel"
+                       Text="Telefonist pilti valitud ei ole"
+                       FontSize="12"
+                       TextColor="#66706A" />
+
+                <Label Text="Lühikirjeldus"
+                       TextColor="#405144"
+                       FontAttributes="Bold" />
+                <Editor x:Name="DescriptionEditor"
+                        Placeholder="Näiteks: kiire ja maitsev õhtusöök kogu perele"
+                        AutoSize="TextChanges"
+                        HeightRequest="80"
+                        BackgroundColor="White"
+                        TextColor="#1D2A20" />
+
+                <Label Text="Koostisosad"
+                       TextColor="#405144"
+                       FontAttributes="Bold" />
+                <Editor x:Name="IngredientsEditor"
+                        Placeholder="Kirjuta iga koostisosa eraldi reale"
+                        AutoSize="TextChanges"
+                        HeightRequest="110"
+                        BackgroundColor="White"
+                        TextColor="#1D2A20" />
+
+                <Label Text="Valmistamisjuhend"
+                       TextColor="#405144"
+                       FontAttributes="Bold" />
+                <Editor x:Name="InstructionsEditor"
+                        Placeholder="Kirjuta sammud eraldi ridadele"
+                        AutoSize="TextChanges"
+                        HeightRequest="130"
+                        BackgroundColor="White"
+                        TextColor="#1D2A20" />
+
+                <Grid ColumnDefinitions="*, *, *"
+                      ColumnSpacing="10">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Ettevalmistus"
+                               TextColor="#405144"
+                               FontAttributes="Bold" />
+                        <Picker x:Name="PrepTimePicker"
+                                Title="Vali"
+                                BackgroundColor="White"
+                                TextColor="#1D2A20"
+                                TitleColor="#66706A" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="6">
+                        <Label Text="Küpsetus"
+                               TextColor="#405144"
+                               FontAttributes="Bold" />
+                        <Picker x:Name="CookTimePicker"
+                                Title="Vali"
+                                BackgroundColor="White"
+                                TextColor="#1D2A20"
+                                TitleColor="#66706A" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2"
+                                         Spacing="6">
+                        <Label Text="Portsjonid"
+                               TextColor="#405144"
+                               FontAttributes="Bold" />
+                        <Entry x:Name="ServingsEntry"
+                               Placeholder="2"
+                               Keyboard="Numeric"
+                               BackgroundColor="White"
+                               TextColor="#1D2A20" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Button Text="Salvesta retsept"
+                        Clicked="OnSaveClicked"
+                        Margin="0,10,0,0"
+                        HeightRequest="50"
+                        BackgroundColor="#355E3B"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="8" />
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

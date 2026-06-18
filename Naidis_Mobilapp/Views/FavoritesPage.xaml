@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_Mobilapp.Views.FavoritesPage"
+             Title="{Binding PageTitle}"
+             BackgroundColor="#F4F7F2">
+    <Grid RowDefinitions="Auto, *"
+          Padding="14"
+          RowSpacing="12">
+        <Label Text="{Binding PageTitle}"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="#143D2B" />
+
+        <Grid Grid.Row="1">
+            <CollectionView ItemsSource="{Binding Favorites}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Delete"
+                                               BackgroundColor="#C84C3D"
+                                               Invoked="OnDeleteInvoked" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Border Margin="0,0,0,10"
+                                    Padding="10"
+                                    BackgroundColor="White"
+                                    Stroke="#DCE7DD"
+                                    StrokeThickness="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8" />
+                                </Border.StrokeShape>
+                                <Grid ColumnDefinitions="86, *"
+                                      ColumnSpacing="12">
+                                    <Image Source="{Binding ImageUrl}"
+                                           WidthRequest="76"
+                                           HeightRequest="76"
+                                           Aspect="AspectFill"
+                                           BackgroundColor="#DCE7DD" />
+
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Spacing="5"
+                                                         VerticalOptions="Center">
+                                        <Label Text="{Binding Name}"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               TextColor="#143D2B" />
+                                        <Label Text="{Binding ShortDescription}"
+                                               FontSize="14"
+                                               TextColor="#4A5A50"
+                                               MaxLines="2"
+                                               LineBreakMode="TailTruncation" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="{Binding EmptyText}"
+                   IsVisible="{Binding IsEmpty}"
+                   FontSize="18"
+                   TextColor="#4A5A50"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+        </Grid>
+    </Grid>
+</ContentPage>
